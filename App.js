@@ -26,19 +26,17 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      // 在组件样式中使用flex可以使其在可利用的空间中动态地扩张或收缩。
-      // 一般而言我们会使用flex:1来指定某个组件扩张以撑满所有剩余的空间。
-      // 如果有多个并列的子组件使用了flex:1，则这些子组件会平分父容器中剩余的空间。
-      // 如果这些并列的子组件的flex值不一样，则谁的值更大，
-      // 谁占据剩余空间的比例就更大（即占据剩余空间的比等于并列组件间flex值的比）
-      <View style = {{height:300,backgroundColor:"yellow",flexDirection:"row"}}>
-        <View style = {{flex:3,backgroundColor:"red",}}>
+      //alignSelf:auto/flex-start/flex-end/baseline/stretch
+      // align-self 允许单个项目有与其他项目不一样的对其方式，可覆盖align-items属性 
+      // 默认值为auto ，表示继承align-items属性，如果没有父元素 则等于stretch
+      <View style = {{backgroundColor:"yellow",flexDirection:"row",alignItems:"center"}}>
+        <View style = {{height:300,flex:3,backgroundColor:"red",}}>
           
         </View>
-        <View style = {{flex:0.1,backgroundColor:"orange",}}>
+        <View style = {{height:200,flex:1,backgroundColor:"orange",alignSelf:"flex-start",}}>
           
         </View>
-        <View style = {{flex:0.1,backgroundColor:"#eeeeee",}}>
+        <View style = {{height:100,flex:1,backgroundColor:"#eeeeee",}}>
           
         </View>
       </View>
