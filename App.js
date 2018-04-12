@@ -12,27 +12,53 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+//倒入json数据
+var badgeData = require('./BadgeData.json');
 
-type Props = {};
-//饮用外部类库
-var Dimensions = require("Dimensions");
 export default class App extends Component < Props > {
   render() {
     return (
-      
-   
+      <View style = {viewStyles.container}>
+        {/*返回6个包*/}
+        {/**/}
+        {this.renderBadge()}
+      </View>
     );
+  }
+
+  //返回所有的包
+  renderBadge() {
+    //定义数组 承载所有值组件
+    var allBadge = [];
+    for (var i = 0; i < badgeData.data.length; i++) {
+      var badge = badgeData.data[i];
+      allBadge.push(
+        <View style = {cellStyle.box}>
+          {/*<Image source = {{uri :badge.icon} style={cellStyle.imageStyle} ></Image>*/}
+          <Text style = {cellStyle.title}>{badge.title}</Text>
+        </View>
+      );
+    }
   }
 }
 
 var viewStyles = StyleSheet.create({
-  
+  container : {
+    flex:1,
+    backgroundColor:'#f5fcff'
+  }
+});
+var cellStyle = StyleSheet.create({
+  box : {
+    flex:1,
+  },
+  imageStyle : {
+    flex:1,
+  },
+  title : {
+    flex:1,
+  },
 });
