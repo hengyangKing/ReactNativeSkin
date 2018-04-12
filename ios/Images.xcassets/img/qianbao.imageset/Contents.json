@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "qianbao.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bd_logo1.png",
       "scale" : "2x"
     },
     {

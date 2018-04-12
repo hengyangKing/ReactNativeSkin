@@ -17,13 +17,20 @@ import {
 
 //倒入json数据
 var badgeData = require('./BadgeData.json');
+var dimensions = require('Dimensions');
+var width = dimensions.get('window').width;
+
+//定义全局变量
+var cols = 3;
+var boxWidth = 100;
+var margin = (width - (cols*boxWidth))/(cols+1);
+
 
 export default class App extends Component < Props > {
   render() {
     return (
       <View style = {viewStyles.container}>
         {/*返回6个包*/}
-        {/**/}
         {this.renderBadge()}
       </View>
     );
@@ -33,32 +40,41 @@ export default class App extends Component < Props > {
   renderBadge() {
     //定义数组 承载所有值组件
     var allBadge = [];
+    
     for (var i = 0; i < badgeData.data.length; i++) {
       var badge = badgeData.data[i];
       allBadge.push(
-        <View style = {cellStyle.box}>
-          {/*<Image source = {{uri :badge.icon} style={cellStyle.imageStyle} ></Image>*/}
+        <View key = {i} style = {cellStyle.box}>
+          <Image source = {{uri :badge.icon}}style = {cellStyle.imageStyle}/>
           <Text style = {cellStyle.title}>{badge.title}</Text>
         </View>
       );
     }
+    return allBadge;
   }
 }
 
 var viewStyles = StyleSheet.create({
   container : {
-    flex:1,
-    backgroundColor:'#f5fcff'
+    backgroundColor:'#f5fcff',
+    flexDirection: 'row',
+    flexWrap:'wrap',//换行显示
+
   }
 });
 var cellStyle = StyleSheet.create({
   box : {
-    flex:1,
+    backgroundColor:"#eeeeee",
+    alignItems:"center",
+    width:boxWidth,
+    height:boxWidth,  
+    marginLeft : margin,
+    marginTop : 40,
   },
   imageStyle : {
-    flex:1,
+    width:80,
+    height:80,
   },
   title : {
-    flex:1,
   },
 });
