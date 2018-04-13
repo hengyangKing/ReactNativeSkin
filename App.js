@@ -9,21 +9,19 @@ import {
     Platform,
     StyleSheet,
     View,
-    
+    Image,
 
 } from 'react-native';
 
+var LoginView = require('./Login/loginView');
 
 type Props = {};
 export default class App extends Component<Props> {
-  render() {
-    return (
-      <View>
-
-        
-      </View>
-    );
-  }
+  	render() {
+    	return ( 
+    		<LoginView />
+    	);
+ 	}
 }
 
 
