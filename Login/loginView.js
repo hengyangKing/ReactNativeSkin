@@ -52,9 +52,9 @@ class loginView extends Component {
 					</View>
 
 					<View style = {styles.exceptionBtns}>
-						<Image source = {require("../img/icon3.png")} style = {styles.exceptionBtn} />
-						<Image source = {require("../img/icon7.png")} style = {styles.exceptionBtn}/>
-						<Image source = {require("../img/icon8.png")} style = {styles.exceptionBtn}/>
+						<Image source = {require("../img/icon3.png")}/>
+						<Image source = {require("../img/icon7.png")}/>
+						<Image source = {require("../img/icon8.png")}/>
 					</View>
 				</View>
             </View>
@@ -110,13 +110,7 @@ var styles = StyleSheet.create({
 		flexDirection:"row",
 		marginTop:20,
 		justifyContent:'space-around'
-	},
-	exceptionBtn : {
-		width:60,
-		height:60,
-		borderRadius:30,
 	}
-
 })
 // 输出类
 module.exports = loginView;
