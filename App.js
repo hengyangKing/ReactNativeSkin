@@ -12,6 +12,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -38,7 +39,7 @@ export default class App extends Component < Props > {
         <View>
           {/*从项目中加载图片*/}
           <Text>1.从项目中加载图片</Text>
-          {/* <Image source={require('./img/icon.png')} style={styles.imageStyle} />*/}
+          { <Image source={require('./img/icon.png')} style={viewStyles.imageStyle} />}
 
           {/*从资源包中加载图片*/}
           <Text>2.从APP中加载图片</Text>
