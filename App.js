@@ -23,6 +23,8 @@ let {width,height} = require('Dimensions').get("window");
 type Props = {};
 export default class App extends Component<Props> {
 
+	//初始化函数
+
 	render() {
   		return (
       		<View>
@@ -34,20 +36,48 @@ export default class App extends Component<Props> {
 	renderAddBanner(){
   		
   		return [
-  				<ScrollView horizontal = {true} key = {101}>
+  				<ScrollView 
+  					horizontal = {true}
+  					key = {101}
+  					style = {styles.container}
+  					showsHorizontalScrollIndicator = {false}
+  					pagingEnabled = {true}
+  				>
   					{this.renderImages()}
-				</ScrollView>
+				</ScrollView>,
+				//返回焦点
+				<View style = {styles.pageControl} key = {102}>
+					{this.renderPageControls()}
+				</View>
 				];
 	}
 	renderImages(){
-		var imagesArr = data;
 		var images = [];
-		for (var i = 0; i < imagesArr.length; i++) {
+		for (var i = 0; i < data.length; i++) {
 			//imagesArr[i].img
-			let path = <Image key={i} source={{uri:imagesArr[i].img}} style={{width:width,height:200}} />
-			images.push(path);
+			images.push(
+				<Image 
+					key={i}
+					source={{uri:data[i].img}} 
+					style={{width:width,height:200}} 
+				/>
+			);
 		}
 		return images;
+	}
+	renderPageControls(){
+		var controls = [];
+		for (var i = 0; i < data.length; i++) {
+			controls.push(
+				<Text 
+					style = {{fontSize:30,color:"black"}}
+					key = {i}
+				>
+					&bull;
+				</Text>
+			);
+		}
+		return controls;
 	}
 
   	
@@ -59,6 +89,22 @@ export default class App extends Component<Props> {
   	// }
 }
 
+const styles = StyleSheet.create({
+	container:{
+		marginTop:20,
+	},
+	pageControl:{
+		position:"absolute",
+		backgroundColor:"rgba(241,241,241,0.8)",
+		width:width,
+		height:30,
+		bottom:0,
+		flexDirection:"row",
+		alignItems:"center",
+
+	}
+
+});
 
 
 
