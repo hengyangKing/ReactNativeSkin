@@ -16,16 +16,18 @@ import {
 
 } from 'react-native';
 
-var TimerMixin = require('react-timer-mixin');
-var ImageData = require('./data/ImageData.json');
-
+// var TimerMixin = require('react-timer-mixin');
+let data = require('./data/ImageData.json').data;
+// let Dim = require('Dimensions')
+let {width,height} = require('Dimensions').get("window");
 type Props = {};
 export default class App extends Component<Props> {
 
 	render() {
   		return (
       		<View>
-      			{this.renderAddBanner()}			
+      			{this.renderAddBanner()}
+      			{this.renderLog()}		
       		</View>
     	);
   	}
@@ -42,25 +44,30 @@ export default class App extends Component<Props> {
 				];
 	}
 	renderImages(){
+		var imagesArr = data;
 		var images = [];
-		var imagesArr = ImageData.data;
 		for (var i = 0; i < imagesArr.length; i++) {
-			// var imgItem = imagesArr[i];
-			// var imgPath = "./img/"+imgItem.img+".png";
-			// var imgPath = "./img/"+"img_01"+".png";
-			// let imgUrl = ;
-			images.push(
-				<Image  
-					key = {i}
-					source = {require('./img/' + imagesArr[i].img + '.png')}
-					// source = {require('./img/img_01.png')}
-					style = {{width:100,height:200}}
-
-				 />
-			)
-		};
+			//imagesArr[i].img
+			let path = <Image key={i} source={require('./img/'+'img_01'+'.png')} style={{width:100,height:200}} />
+			images.push(path);
+			console.log(path)
+		}
 		return images;
+	}
+	renderLog(){
+		var dataArr = data;
+		var logs = [];
+		for (var i = 0; i < dataArr.length; i++) {
 
+			let path = "<Image key={i} source={require('./img/"+dataArr[i].img+".png')} style={{width:100,height:200}} />"
+			logs.push(
+				<View style = {{marginTop:20}} key = {i}>
+					<Text>{path}</Text>
+				</View>
+
+			);
+		}
+		return logs;
 	}
 
   	renderChildView(){
