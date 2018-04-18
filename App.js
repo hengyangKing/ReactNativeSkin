@@ -14,6 +14,7 @@ import {
 	Image,
 
 
+
 } from 'react-native';
 
 // var TimerMixin = require('react-timer-mixin');
@@ -23,14 +24,21 @@ let {width,height} = require('Dimensions').get("window");
 type Props = {};
 export default class App extends Component<Props> {
 
-	//初始化函数
+	// ES6初始化 构造函数 
+	constructor(props) {
+    	super(props);
+    	this.state = { currentPage:0 };
+
+  	}
 
 	render() {
+		console.log("start load");
   		return (
       		<View>
       			{this.renderAddBanner()}
       		</View>
     	);
+
   	}
 
 	renderAddBanner(){
@@ -42,6 +50,7 @@ export default class App extends Component<Props> {
   					style = {styles.container}
   					showsHorizontalScrollIndicator = {false}
   					pagingEnabled = {true}
+  					onMomentumScrollEnd = {this.onAnimationEnd}
   				>
   					{this.renderImages()}
 				</ScrollView>,
@@ -68,9 +77,10 @@ export default class App extends Component<Props> {
 	renderPageControls(){
 		var controls = [];
 		for (var i = 0; i < data.length; i++) {
+			style = (i == this.state.currentPage)?{color:"orange"}:{color:"#ffffff"};
 			controls.push(
 				<Text 
-					style = {{fontSize:30,color:"black"}}
+					style = {[{fontSize:30},style]}//实现多样式表
 					key = {i}
 				>
 					&bull;
@@ -79,8 +89,16 @@ export default class App extends Component<Props> {
 		}
 		return controls;
 	}
-
-  	
+	//当一帧滚动结束的时候调用
+	onAnimationEnd(event){
+		//偏移量
+		var offsetX = event.nativeEvent.contentOffset.x;
+		var page = Math.floor(offsetX / width);
+		console.log(page)
+		this.setState({
+			currentPage : page
+		});
+	}
   	//注册计时器
   	mixins:[TimerMixin]
 
@@ -101,7 +119,6 @@ const styles = StyleSheet.create({
 		bottom:0,
 		flexDirection:"row",
 		alignItems:"center",
-
 	}
 
 });
