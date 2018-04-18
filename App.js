@@ -10,22 +10,55 @@ import {
     StyleSheet,
     View,
 	ScrollView,  
-	Text,  
+	Text,
+	Image,
+
 
 } from 'react-native';
 
+var TimerMixin = require('react-timer-mixin');
+var ImageData = require('./data/ImageData.json');
 
 type Props = {};
 export default class App extends Component<Props> {
+
 	render() {
   		return (
       		<View>
-				<ScrollView horizontal = {true}>
-					{this.renderChildView()}
-				</ScrollView>		
+      			{this.renderAddBanner()}			
       		</View>
     	);
   	}
+
+	renderAddBanner(){
+  		
+  		return [
+  				<ScrollView horizontal = {true} key = {101}>
+  					{/*{this.renderChildView()}*/}
+  					{this.renderImages()}
+					
+  				
+				</ScrollView>
+				];
+	}
+	renderImages(){
+		var images = [];
+		var imagesArr = ImageData.data;
+		for (var i = 0; i < imagesArr.length; i++) {
+			var imgItem = imagesArr[i];
+			images.push(
+				<Image  
+					key = {i}
+					source = {{uri:"img/"+imgItem.img}}
+					style = {{width:100,height:200}}
+
+				 />
+			)
+		};
+		return images;
+
+	}
+
   	renderChildView(){
   		var allChild = [];
   		var colors = ["red","green","yellow","purple","blue"];
@@ -41,7 +74,15 @@ export default class App extends Component<Props> {
   		}
   		return allChild;
   	}
+  	//注册计时器
+  	mixins:[TimerMixin]
+
+  	// componentDidMount() {
+   //  	this.setTimeout(() => {console.log('I do not leak!'); },500);
+  	// }
 }
+
+
 
 
 
