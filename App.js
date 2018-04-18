@@ -45,11 +45,15 @@ export default class App extends Component<Props> {
 		var images = [];
 		var imagesArr = ImageData.data;
 		for (var i = 0; i < imagesArr.length; i++) {
-			var imgItem = imagesArr[i];
+			// var imgItem = imagesArr[i];
+			// var imgPath = "./img/"+imgItem.img+".png";
+			// var imgPath = "./img/"+"img_01"+".png";
+			// let imgUrl = ;
 			images.push(
 				<Image  
 					key = {i}
-					source = {{uri:"img/"+imgItem.img}}
+					source = {require('./img/' + imagesArr[i].img + '.png')}
+					// source = {require('./img/img_01.png')}
 					style = {{width:100,height:200}}
 
 				 />
