@@ -27,12 +27,11 @@ export default class App extends Component<Props> {
 	// ES6初始化 构造函数 
 	constructor(props) {
     	super(props);
-    	this.state = { currentPage:0 };
+    	this.state = {currentPage:0};
 
   	}
 
 	render() {
-		console.log("start load");
   		return (
       		<View>
       			{this.renderAddBanner()}
@@ -50,7 +49,7 @@ export default class App extends Component<Props> {
   					style = {styles.container}
   					showsHorizontalScrollIndicator = {false}
   					pagingEnabled = {true}
-  					onMomentumScrollEnd = {this.onAnimationEnd}
+  					onMomentumScrollEnd = {this.onAnimationEnd.bind(this)}
   				>
   					{this.renderImages()}
 				</ScrollView>,
@@ -82,6 +81,7 @@ export default class App extends Component<Props> {
 				<Text 
 					style = {[{fontSize:30},style]}//实现多样式表
 					key = {i}
+					onClick = {this.onPageControlClick.bind(this)}
 				>
 					&bull;
 				</Text>
@@ -91,20 +91,18 @@ export default class App extends Component<Props> {
 	}
 	//当一帧滚动结束的时候调用
 	onAnimationEnd(event){
-		//偏移量
+		// //偏移量
 		var offsetX = event.nativeEvent.contentOffset.x;
 		var page = Math.floor(offsetX / width);
-		console.log(page)
-		this.setState({
-			currentPage : page
-		});
+		this.setState({currentPage:page})
+	}
+	onPageControlClick(event){
+		console.log(event.key)
+
+
 	}
   	//注册计时器
   	mixins:[TimerMixin]
-
-  	// componentDidMount() {
-   //  	this.setTimeout(() => {console.log('I do not leak!'); },500);
-  	// }
 }
 
 const styles = StyleSheet.create({
