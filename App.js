@@ -45,11 +45,12 @@ export default class App extends Component<Props> {
   	//开启定时器
   	startTimer(){
 		let scrollView = this.refs.scrollView;
-		console.log(scrollView);
 		let time  =  setInterval(()=>{
       		var activePage ;
 			activePage = (this.state.currentPage+1 >= data.length)?0:(this.state.currentPage+1);
       		this.setState({currentPage:activePage});
+      		let currentX = activePage * width;
+      		scrollView.scrollResponderScrollTo({x:currentX,y:0,animated:true});
     	},this.props.duration);
   	}
 
@@ -102,13 +103,8 @@ export default class App extends Component<Props> {
 			style = (i == this.state.currentPage)?{color:"orange"}:{color:"#ffffff"};
 			controls.push(
 
-				<View key = {i} style = {{backgroundColor :"red"}}>
-					<TouchableOpacity
-						onPress = {this.onPageControlClick.bind(this)}
-					/>
-					<Text 
-					style = {[{fontSize:30},style]}//实现多样式表
-					>
+				<View key = {i}>
+					<Text style = {[{fontSize:30},style]/*多样式表实现*/}>
 						&bull;
 					</Text>	
 				</View>
@@ -123,10 +119,6 @@ export default class App extends Component<Props> {
 		var page = Math.floor(offsetX / width);
 		this.setState({currentPage:page})
 	}
-	onPageControlClick(event){
-		console.log("123")
-	}
-  	
 }
 //设置固定值 对应ES5 getDefaultProps
 App.defaultProps = {
