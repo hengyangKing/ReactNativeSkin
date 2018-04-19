@@ -12,7 +12,7 @@ import {
 	ScrollView,  
 	Text,
 	Image,
-
+	TouchableOpacity,
 
 
 } from 'react-native';
@@ -22,13 +22,35 @@ let data = require('./data/ImageData.json').data;
 // let Dim = require('Dimensions')
 let {width,height} = require('Dimensions').get("window");
 type Props = {};
+
 export default class App extends Component<Props> {
+	//注册计时器
+  	mixins:[TimerMixin]
 
 	// ES6初始化 构造函数 
 	constructor(props) {
     	super(props);
-    	this.state = {currentPage:0};
+    	this.state = {
+    		currentPage:0,
+  		};
+  	}
 
+	//在rander 方法调用后 组件加载成功并成功被渲染出来以后，要执行的后续操作，
+	// 一般会在这个函数中处理网络请求等加载数据的操作
+
+  	componentDidMount(){
+   		this.startTimer();
+  	}
+  	
+  	//开启定时器
+  	startTimer(){
+		let scrollView = this.refs.scrollView;
+		console.log(scrollView);
+		let time  =  setInterval(()=>{
+      		var activePage ;
+			activePage = (this.state.currentPage+1 >= data.length)?0:(this.state.currentPage+1);
+      		this.setState({currentPage:activePage});
+    	},this.props.duration);
   	}
 
 	render() {
@@ -50,6 +72,7 @@ export default class App extends Component<Props> {
   					showsHorizontalScrollIndicator = {false}
   					pagingEnabled = {true}
   					onMomentumScrollEnd = {this.onAnimationEnd.bind(this)}
+  					ref = "scrollView"
   				>
   					{this.renderImages()}
 				</ScrollView>,
@@ -78,13 +101,17 @@ export default class App extends Component<Props> {
 		for (var i = 0; i < data.length; i++) {
 			style = (i == this.state.currentPage)?{color:"orange"}:{color:"#ffffff"};
 			controls.push(
-				<Text 
+
+				<View key = {i} style = {{backgroundColor :"red"}}>
+					<TouchableOpacity
+						onPress = {this.onPageControlClick.bind(this)}
+					/>
+					<Text 
 					style = {[{fontSize:30},style]}//实现多样式表
-					key = {i}
-					onClick = {this.onPageControlClick.bind(this)}
-				>
-					&bull;
-				</Text>
+					>
+						&bull;
+					</Text>	
+				</View>
 			);
 		}
 		return controls;
@@ -97,13 +124,14 @@ export default class App extends Component<Props> {
 		this.setState({currentPage:page})
 	}
 	onPageControlClick(event){
-		console.log(event.key)
-
-
+		console.log("123")
 	}
-  	//注册计时器
-  	mixins:[TimerMixin]
+  	
 }
+//设置固定值 对应ES5 getDefaultProps
+App.defaultProps = {
+ 	duration : 1000,
+};
 
 const styles = StyleSheet.create({
 	container:{
