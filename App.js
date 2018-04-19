@@ -45,7 +45,7 @@ export default class App extends Component<Props> {
   	//开启定时器
   	startTimer(){
 		let scrollView = this.refs.scrollView;
-		let time  =  setInterval(()=>{
+		this.timer  =  setInterval(()=>{
       		var activePage ;
 			activePage = (this.state.currentPage+1 >= data.length)?0:(this.state.currentPage+1);
       		this.setState({currentPage:activePage});
@@ -74,6 +74,8 @@ export default class App extends Component<Props> {
   					pagingEnabled = {true}
   					onMomentumScrollEnd = {this.onAnimationEnd.bind(this)}
   					ref = "scrollView"
+  					onScrollBeginDrag = {this.onScrollBeginDrag.bind(this)}//开始拖拽时调用
+  					onScrollEndDrag = {this.onScrollEndDrag.bind(this)}
   				>
   					{this.renderImages()}
 				</ScrollView>,
@@ -114,10 +116,17 @@ export default class App extends Component<Props> {
 	}
 	//当一帧滚动结束的时候调用
 	onAnimationEnd(event){
-		// //偏移量
+		// 偏移量
 		var offsetX = event.nativeEvent.contentOffset.x;
 		var page = Math.floor(offsetX / width);
 		this.setState({currentPage:page})
+	}
+	//开始拖拽调用
+	onScrollBeginDrag(){
+		clearInterval(this.timer);		
+	}
+	onScrollEndDrag(){
+		this.startTimer();
 	}
 }
 //设置固定值 对应ES5 getDefaultProps
