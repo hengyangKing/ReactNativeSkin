@@ -41,7 +41,7 @@ export default class App extends Component<Props> {
 		return (
 			<View>
 				<ListView  
-            	// style={styles.listView}  
+            	style={styles.listStyle}  
             	dataSource={this.state.dataSource}  
 	            renderRow={this.renderRow.bind(this)}  
 	            // renderHeader={_renderHeader}  
@@ -51,23 +51,58 @@ export default class App extends Component<Props> {
 			</View>
 	    );
 	}
-	renderRow(rowData, sectionID, rowID){
-		console.log({rowData, sectionID, rowID});
+	renderRow(rowData){
 		return(  
-			<View style = {{backgroundColor:"red"}}>
-				<Text>{rowData, sectionID, rowID}</Text>
+			<View>
+				<View style = {styles.cellContentStyle}>
+					<Image
+						style={styles.coverStyle}  
+						source={{uri:rowData.image}}
+					/>
+					<View style={styles.describe}>
+						<Text style = {styles.describeTop}>
+							{rowData.name}
+						</Text>
+						<Text  style = {styles.describeBottom}>
+							{rowData.money}
+						</Text>
+					</View>
+				</View>
+
+				<View style = {styles.separator}>
+					
+				</View>
 			</View>
-			/*
-	        <View style={styles.row}>  
-	            <Image  
-	                style={styles.thumbnail}  
-	                source={{uri:movie.posters.thumbnail}}/>  
-	            <View >  
-	                <Text >{movie.title}</Text>  
-	                <Text >{movie.year}</Text>  
-	            </View>  
-	        </View> 
-	        */ 
     	);	
 	}
 }
+var styles = StyleSheet.create({
+	listStyle:{
+		marginTop:20,
+	},
+	separator:{
+		height:2,
+		marginLeft:10,
+		marginRight:10,
+		backgroundColor:"blue",
+	},
+	cellContentStyle:{
+		flexDirection:"row",
+	},
+	coverStyle:{
+		width:53,  
+        height:81,  
+        backgroundColor:"gray",
+	},
+	describe:{
+		flex:1,
+	},
+	describeTop:{
+		flex:1,
+	},
+	describeBottom:{
+		flex:1,
+	},
+
+
+});
