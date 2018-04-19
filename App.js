@@ -12,6 +12,8 @@ import {
     ListView,
     Image,
     Text,
+    TouchableOpacity,
+    AlertIOS,
     
 
 } from 'react-native';
@@ -19,6 +21,7 @@ import {
 
 type Props = {};
 var data = require('./data/Wine.json');
+var {width ,height} = require("Dimensions").get("window");
 export default class App extends Component<Props> {
 
 // 1.getInitialState 中初始化
@@ -52,27 +55,27 @@ export default class App extends Component<Props> {
 	    );
 	}
 	renderRow(rowData){
-		return(  
-			<View>
+		return( 
+			<TouchableOpacity
+				onPress = {()=>{
+					AlertIOS.alert({rowData.toString()});
+				}}
+			>
 				<View style = {styles.cellContentStyle}>
-					<Image
-						style={styles.coverStyle}  
-						source={{uri:rowData.image}}
-					/>
-					<View style={styles.describe}>
+						<Image
+							style={styles.coverStyle}  
+							source={{uri:rowData.image}}
+						/>
+						<View style={styles.describe}>
 						<Text style = {styles.describeTop}>
 							{rowData.name}
 						</Text>
 						<Text  style = {styles.describeBottom}>
-							{rowData.money}
+							{"¥"+rowData.money}
 						</Text>
 					</View>
 				</View>
-
-				<View style = {styles.separator}>
-					
-				</View>
-			</View>
+			</TouchableOpacity>
     	);	
 	}
 }
@@ -80,28 +83,30 @@ var styles = StyleSheet.create({
 	listStyle:{
 		marginTop:20,
 	},
-	separator:{
-		height:2,
-		marginLeft:10,
-		marginRight:10,
-		backgroundColor:"blue",
-	},
 	cellContentStyle:{
 		flexDirection:"row",
+		borderBottomWidth:0.3,
+		borderBottomColor:"gray",
+		padding:10,
 	},
 	coverStyle:{
-		width:53,  
-        height:81,  
+		width:60,  
+        height:60,  
         backgroundColor:"gray",
+        marginRight:10,
 	},
 	describe:{
 		flex:1,
+		justifyContent:"center",
 	},
 	describeTop:{
-		flex:1,
+		fontSize : 15,
+		marginBottom:5,
 	},
 	describeBottom:{
-		flex:1,
+		fontSize:18,
+		color:"red",
+
 	},
 
 
