@@ -72,8 +72,8 @@ export default class App extends Component<Props> {
 	}
 	renderSectionHeader(sectionData,sectionId) {
 		return(
-			<View style = {{ backgroundColor:'#ccc'}}>
-				<Text style = {{ fontSize:20,height :44,}}>{sectionData}</Text>
+			<View style = {styles.headerStyle}>
+				<Text style = {{fontSize:18}}>{sectionData}</Text>
 			</View>
 		);
 	}
@@ -115,8 +115,16 @@ var styles = StyleSheet.create({
 	cellStyle:{
       flexDirection:'row',
       borderBottomColor:'#ccc',
-      borderBottomWidth:1,
+      borderBottomWidth:0.5,
+      alignItems:"center",
       padding:10
+  	},
+  	headerStyle:{
+  		flexDirection:'row',
+  		height:44,
+  		backgroundColor:'#ccc',
+		paddingLeft:10,
+		alignItems:"center",
   	},
 	iconStyle :{
 		width:70,
@@ -124,7 +132,7 @@ var styles = StyleSheet.create({
 		marginRight:10
 	},
 	titleStyle:{
-		marginTop:10,
+		marginLeft:5,
 	}
 });
 
