@@ -52,11 +52,9 @@ export default class App extends Component<Props> {
 	    );
 	 }
 	renderRow(rowData,sectionId,cellId){
-		var sty = styles.collectionCell;
-
 		return(
 			<TouchableOpacity activeOpacity = {0.5}>
-				<View style = {sty}>
+				<View style = {styles.collectionCell}>
 					<Image
 						source = {{uri :rowData.icon}}
 						style = {styles.iconStyle}
@@ -76,13 +74,13 @@ var styles = StyleSheet.create({
 		flexWrap:"wrap",
 		alignItems:"center",
 		backgroundColor:"yellow",
-		justifyContent:"center",
-
-
+		flex:1,
+		// justifyContent:"center",
 	},
 	collectionCell:{
 		margin:margin,
 		alignItems:"center",
+
 	},
 	iconStyle :{
 		width:cellW,
