@@ -15,76 +15,113 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-var datas = require("./data/shareData.json").data;
+var datas = require("./data/Car.json").data;
 var {width ,height} = require("Dimensions").get("window");
-var cols = 3;
-var margin = 5;
-var cellW  = (width/cols) - (margin *2*cols);
 
 type Props = {};
 
 
 export default class App extends Component<Props> {
 	constructor(Props){  
-        super(Props);  
-        var ds = new ListView.DataSource({  
-            /*判断这两行是否相同，就是是否发生变化，决定渲染哪些行组件，避免全部渲染，提高渲染效率*/  
-            rowHasChanged: (oldRow, newRow) => oldRow !== newRow  
-        });  
-        this.state = {  
-            /*不使用原始数据，有一个拷贝的过程*/  
-            /*使用复制后的数据源实例化ListView。优势：当原始数据发生变化时，
-            那ListView组件的DataSource不会改变*/  
-            /*是一个数组*/  
-            dataSource:ds.cloneWithRows(datas)  
-        };  
+        super(Props); 
+        //获取组数据
+        var  getSectionData = (dataBlob,sectionId) => {
+			return dataBlob[sectionId];
+        };
+        var getRowData = (dataBlob,sectionId,rowId) => {
+        	let data = dataBlob[sectionId + ":" + rowId];
+        	console.log(data);
+			return data;
+        };
+        this.state = {
+        	dataSource:new ListView.DataSource({  
+        	getSectionData:getSectionData,
+			getRowData:getRowData, 
+			rowHasChanged:(r1,r2) => r1!=r2,
+			sectionHeaderHasChanged:(s1,s2) => s1!=s2,
+
+        	})
+        } 
     }  	
 	render() {
-		console.log(datas);
 	    return (	
-			<View style = {{flex:1,}}>
+			<View style = {styles.baseViewStyle}>
 				<ListView
-				dataSource = {this.state.dataSource}
-				renderRow = {this.renderRow.bind(this)}
-				contentContainerStyle = {styles.listStyle}
+					dataSource = {this.state.dataSource}
+					renderRow = {this.renderRow.bind(this)}
+					renderSectionHeader = {this.renderSectionHeader.bind(this)}
 				/>
 			</View>	
 	    );
-	 }
-	renderRow(rowData,sectionId,cellId){
+	}
+
+	renderRow(rowData,sectionId,cellId) {
 		return(
 			<TouchableOpacity activeOpacity = {0.5}>
-				<View style = {styles.collectionCell}>
+				<View style = {styles.cellStyle}>
 					<Image
 						source = {{uri :rowData.icon}}
 						style = {styles.iconStyle}
 					/>
 					<Text style = {styles.titleStyle}>
-						{rowData.title}
+						{rowData.name}
 					</Text>
 				</View>
 			</TouchableOpacity>
 		);
 	}
+	renderSectionHeader(sectionData,sectionId) {
+		return(
+			<View style = {{ backgroundColor:'#ccc'}}>
+				<Text style = {{ fontSize:20,height :44,}}>{sectionData}</Text>
+			</View>
+		);
+	}
+	//渲染完成后调用
+	componentDidMount(){
+		this.loadDataFromJson();
+	}
+	loadDataFromJson(){
+		var jsonDatas = datas;
+		//所有的数据
+		var dataBlob = {},
+			sectionsIds = [],
+			rowIds = [],
+			cars = [];
+
+		for (var i = 0; i < jsonDatas.length; i++) {
+			sectionsIds.push(i);
+
+			dataBlob[i] = jsonDatas[i].title;
+			cars = jsonDatas[i].cars;
+			rowIds[i] = [];
+			for (var j = 0; j < cars.length; j++) {
+				rowIds[i].push(j);
+				dataBlob[i+":"+j] = cars[j];
+			}
+		}
+
+		//更新状态 绑定参数
+		this.setState({
+			dataSource:this.state.dataSource.cloneWithRowsAndSections(dataBlob,sectionsIds,rowIds)
+		});
+	}
 }
 
 var styles = StyleSheet.create({
-	listStyle:{
-		flexDirection:"row",
-		flexWrap:"wrap",
-		alignItems:"center",
-		backgroundColor:"yellow",
+	baseViewStyle:{
 		flex:1,
-		// justifyContent:"center",
 	},
-	collectionCell:{
-		margin:margin,
-		alignItems:"center",
-
-	},
+	cellStyle:{
+      flexDirection:'row',
+      borderBottomColor:'#ccc',
+      borderBottomWidth:1,
+      padding:10
+  	},
 	iconStyle :{
-		width:cellW,
-		height:cellW,
+		width:70,
+		height:70,
+		marginRight:10
 	},
 	titleStyle:{
 		marginTop:10,
