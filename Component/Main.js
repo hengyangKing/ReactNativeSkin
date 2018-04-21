@@ -35,7 +35,18 @@ export default class Main extends Component<Props> {
 					onPress = {()=>this.onPress("home")}
 					selected = {this.state.selectedItem == "home"}
     	 		>
-					<Home/>
+    	 			<NavigatorIOS
+    	 				style = {styles.navStyle}
+						tintColor = "orange"
+						initialRoute = {{
+							component:Home,//板块名称
+							title:"首页",
+							leftButtonIcon:{uri:"navigationbar_friendattention",scale:scale},
+							rightButtonIcon:{uri:"navigationbar_pop",scale:scale},
+							leftButtonSelectedIcon:{uri:"navigationbar_friendattention_highlighted",scale:scale},
+						}}
+    	 			/>
+					
 	    	 	</TabBarIOS.Item>
 	    	 	{/*massage*/}
 	    	 	<TabBarIOS.Item
@@ -72,6 +83,13 @@ export default class Main extends Component<Props> {
 		this.setState({selectedItem:event});	
 	} 
 }
+let styles = StyleSheet.create({
+	navStyle:{
+		flex:1,
+
+	},
+
+})
 
 // 输出类
 module.exports = Main;
