@@ -7,6 +7,10 @@ import {
     NavigatorIOS,
 } from 'react-native';
 //引入外部组件
+var Home = require('./Home.js');
+var Massage = require('./Massage.js');
+var Discover = require('./Find.js');
+var Profile = require('./Mine.js');
 
 
 type Props = {};
@@ -31,9 +35,7 @@ export default class Main extends Component<Props> {
 					onPress = {()=>this.onPress("home")}
 					selected = {this.state.selectedItem == "home"}
     	 		>
-					<View>
-						
-					</View>
+					<Home/>
 	    	 	</TabBarIOS.Item>
 	    	 	{/*massage*/}
 	    	 	<TabBarIOS.Item
@@ -42,9 +44,7 @@ export default class Main extends Component<Props> {
 					onPress = {()=>this.onPress("message")}
 					selected = {this.state.selectedItem == "message"}
 	    	 	>
-					<View>
-						
-					</View>
+					<Massage/>
 	    	 	</TabBarIOS.Item>
 	    	 	{/*discover*/}
 	    	 	<TabBarIOS.Item
@@ -53,10 +53,7 @@ export default class Main extends Component<Props> {
 					onPress = {()=>this.onPress("discover")}
 					selected = {this.state.selectedItem == "discover"}
 	    	 	>
-	    	 		<View>
-						
-					</View>
-
+	    	 		<Discover/>
 	    	 	</TabBarIOS.Item>
 	    	 	{/*main*/}
 	    	 	<TabBarIOS.Item
@@ -65,9 +62,7 @@ export default class Main extends Component<Props> {
 					onPress = {()=>this.onPress("profile")}
 					selected = {this.state.selectedItem == "profile"}
 	    	 	>
-					<View>
-						
-					</View>
+					<Profile/>
 	    	 	</TabBarIOS.Item>
 	    	 </TabBarIOS>
     	);
