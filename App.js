@@ -17,6 +17,8 @@ var Main = require("./Component/Main.js");
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+  	console.log("render");
+
     return (
       <Main />
     );

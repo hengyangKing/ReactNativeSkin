@@ -21,9 +21,10 @@ export default class Home extends Component<Props> {
         //     rowHasChanged: (oldRow, newRow) => oldRow !== newRow  
         // }); 
         this.state = {  
+
             // dataSource:ds.cloneWithRows(datas)
         };  
-  }
+    }
     render() {
         return (
         	<View style = {{flex:1,backgroundColor:"yellow",justifyContent:"center",alignItems:'center'}}>
@@ -32,31 +33,31 @@ export default class Home extends Component<Props> {
         );
     }
     componentDidMount(){
-        this.loadData();
+        let datas = this.loadData();
+        console.log(datas);
     }
-
-
     //网络请求
     loadData(){
-        return;
+
         // http://v.juhe.cn/toutiao/index?type=top&key=APPKEY
-        let url = this.baseURL + "type=" + this.keyWord + "&key=" + this.key;
-        console.log(url);
+        let url = this.props.baseURL + "type=" + this.props.keyWord + "&key=" + this.props.key;
         
 // http://v.juhe.cn/toutiao/index?type=tiyu&key=340bee2a8336749cc92c5ec0cbeeec80
 
         return fetch(url)
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
-            return responseJson.movies;
+
+                if (responseJson.reason == '成功的返回' && responseJson.error_code == 0) {
+                    return responseJson.result.data; 
+                }
         }).catch((error) => {
         console.error(error);
         });
     }
 }
 Home.defaultProps = {
-  baseURL: "http://v.juhe.cn/toutiao/index?",
+  baseURL: "https://v.juhe.cn/toutiao/index?",
   key:"340bee2a8336749cc92c5ec0cbeeec80",
   keyWord:"tiyu",
 };
