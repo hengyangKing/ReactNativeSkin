@@ -88,8 +88,11 @@ let styles = StyleSheet.create({
 		flex:1,
 
 	},
-
 })
-
 // 输出类
 module.exports = Main;
+
+
+
+
+
