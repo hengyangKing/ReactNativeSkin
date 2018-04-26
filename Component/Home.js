@@ -8,10 +8,11 @@ import {
     Image,
     TouchableOpacity,
 
-
 } from 'react-native';
 //引入外部组件
-let data = require('./Views/Banner/Banner.js');
+let Banner = require('./Views/Banner/Banner.js');
+let Detail = require('./NewsDetail.js');
+
 type Props = {};
 
 export default class Home extends Component<Props> {
@@ -45,7 +46,10 @@ export default class Home extends Component<Props> {
     renderRow(rowdata){
         let date = rowdata.date;
         let timestamp = date.split(" ",).length ? date.split(" ",)[0]:date;
-        return <TouchableOpacity activeOpacity = {0.5}>
+        return <TouchableOpacity 
+                    activeOpacity = {0.5} 
+                    onPress = {()=>{this.pushToNewsDetail.bind(this)}}
+                >
                 <View style = {style = cellStyles.cell}>
                     {/*左边*/}
                     <Image 
@@ -62,11 +66,22 @@ export default class Home extends Component<Props> {
     }
 
     renderHeader(){
+        if (this.state.headerDataArr.length == 0) return ;
         return(
-            <View>
-                <Text>foo</Text>
-                
-            </View>
+            <Banner 
+                datas = {this.state.headerDataArr.map((objc)=>{
+                    return{
+                        img:objc.thumbnail_pic_s,
+                        title:objc.title,
+                    }  
+                })}
+                bannerHeight = {200}
+                touchAction = {(obj)=>{
+                    console.log(obj.key)
+                    console.log("-------------")
+
+                }}
+            />
         )
     }
 
@@ -74,12 +89,15 @@ export default class Home extends Component<Props> {
     loadData(){
 
         let url = this.props.baseURL + "type=" + this.props.keyWord + "&key=" + this.props.key;
+        console.log(url);
         return fetch(url)
             .then((response) => response.json())
             .then((responseJson) => {
 
                 if (responseJson.reason == '成功的返回' && responseJson.error_code == 0) {
                     let data =  responseJson.result.data; 
+                    console.log("success");
+
                     this.layoutViewsWithData(data);
                 }
         }).catch((error) => {
@@ -103,6 +121,12 @@ export default class Home extends Component<Props> {
             headerDataArr:headerDatas,
             dataSource:this.state.dataSource.cloneWithRows(bodyDatas),
         });
+    }
+    //action
+    pushToNewsDetail(data){
+        console.log(data);
+        console.log("****************************");
+
     }
 }
 Home.defaultProps = {

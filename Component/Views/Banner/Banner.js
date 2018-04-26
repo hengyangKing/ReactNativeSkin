@@ -7,6 +7,7 @@ import {
     ListView,
     Image,
     TouchableOpacity,
+    ScrollView,
 
 
 } from 'react-native';
@@ -25,6 +26,7 @@ export default class Banner extends Component<Props> {
     	super(props);
     	this.state = {
     		currentPage:0,
+    		title:this.props.datas[0].title,
   		};
   	}
 
@@ -38,10 +40,14 @@ export default class Banner extends Component<Props> {
   	//开启定时器
   	startTimer(){
 		let scrollView = this.refs.scrollView;
+		let titles = this.props.datas.map((obj)=>{return obj.title});
 		this.timer  =  setInterval(()=>{
       		var activePage ;
-			activePage = (this.state.currentPage+1 >= imageDatas.length)?0:(this.state.currentPage+1);
-      		this.setState({currentPage:activePage});
+			activePage = (this.state.currentPage+1 >= titles.length)?0:(this.state.currentPage+1);
+      		this.setState({
+      			currentPage:activePage,
+      			title:titles[activePage],
+      		});
       		let currentX = activePage * width;
       		scrollView.scrollResponderScrollTo({x:currentX,y:0,animated:true});
     	},this.props.duration);
@@ -65,36 +71,48 @@ export default class Banner extends Component<Props> {
   					style = {styles.container}
   					showsHorizontalScrollIndicator = {false}
   					pagingEnabled = {true}
-  					onMomentumScrollEnd = {this.onAnimationEnd.bind(this)}
+  					onMomentumScrollEnd = {()=>this.onAnimationEnd.bind(this)}
   					ref = "scrollView"
-  					onScrollBeginDrag = {this.onScrollBeginDrag.bind(this)}//开始拖拽时调用
-  					onScrollEndDrag = {this.onScrollEndDrag.bind(this)}
+  					onScrollBeginDrag = {()=>this.onScrollBeginDrag.bind(this)}//开始拖拽时调用
+  					onScrollEndDrag = {()=>this.onScrollEndDrag.bind(this)}
   				>
   					{this.renderImages()}
 				</ScrollView>,
 				//返回焦点
+				// ,position:"absolute",right:10
 				<View style = {styles.pageControl} key = {102}>
-					{this.renderPageControls()}
+					{this.renderPageTitle()}
+
+					<View style = {{flexDirection:"row",flex:1,justifyContent:"flex-end"}}>
+						{this.renderPageControls()}
+					</View>
 				</View>
 				];
 	}
 	renderImages(){
+
 		var images = [];
-		for (var i = 0; i < imageDatas.length; i++) {
-			//imagesArr[i].img
+		let covers = this.props.datas.map((obj)=>{return obj.img})
+		for (var i = 0; i < covers.length; i++) {
 			images.push(
-				<Image 
+				<TouchableOpacity
 					key={i}
-					source={{uri:imageDatas[i]}} 
+					activeOpacity = {0.5}
+					onPress = {()=>this.props.touchAction.bind(this)}
+				>
+					<Image 
+					source={{uri:covers[i]}} 
 					style={{width:width,height:this.props.bannerHeight}} 
 				/>
+				</TouchableOpacity>
 			);
 		}
 		return images;
 	}
 	renderPageControls(){
 		var controls = [];
-		for (var i = 0; i < imageDatas.length; i++) {
+		let titles = this.props.datas.map((obj)=>{return obj.title});
+		for (var i = 0; i < titles.length; i++) {
 			style = (i == this.state.currentPage)?{color:"orange"}:{color:"#ffffff"};
 			controls.push(
 
@@ -106,6 +124,9 @@ export default class Banner extends Component<Props> {
 			);
 		}
 		return controls;
+	}
+	renderPageTitle(){
+		return <View style = {{flex:3}}><Text style = {{color:"white"}}>{this.state.title}</Text></View>
 	}
 	//当一帧滚动结束的时候调用
 	onAnimationEnd(event){
@@ -124,15 +145,15 @@ export default class Banner extends Component<Props> {
 }
 //设置固定值 对应ES5 getDefaultProps
 Banner.defaultProps = {
- 	duration : 1000,
- 	imageDatas:[],
+ 	duration : 3000,
+ 	datas:[],
  	bannerHeight:200,
- 	TouchAction:()=>{},
+ 	touchAction:(index)=>{},
 };
 
 const styles = StyleSheet.create({
 	container:{
-		marginTop:20,
+		marginTop:0,
 	},
 	pageControl:{
 		position:"absolute",
@@ -142,6 +163,9 @@ const styles = StyleSheet.create({
 		bottom:0,
 		flexDirection:"row",
 		alignItems:"center",
+		justifyContent:"space-between",
+		paddingRight:10,
+		paddingLeft:10,
 	}
 
 });
