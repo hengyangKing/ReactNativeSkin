@@ -126,6 +126,11 @@ export default class Home extends Component<Props> {
         console.log("****************************");
         console.log(data);
         console.log("****************************");
+        this.props.navigator.push({
+            component:Detail,
+            title:data.title,
+            passProps:{data},
+        })
 
     }
 }
