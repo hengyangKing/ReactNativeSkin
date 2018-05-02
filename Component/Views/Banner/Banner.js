@@ -98,7 +98,7 @@ export default class Banner extends Component<Props> {
 				<TouchableOpacity
 					key={i}
 					activeOpacity = {0.5}
-					onPress = {()=>this.props.touchAction.bind(this)}
+					onPress = {()=>this.props.touchAction(this.state.currentPage)}
 				>
 					<Image 
 					source={{uri:covers[i]}} 

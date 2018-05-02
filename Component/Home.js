@@ -47,8 +47,8 @@ export default class Home extends Component<Props> {
         let date = rowdata.date;
         let timestamp = date.split(" ",).length ? date.split(" ",)[0]:date;
         return <TouchableOpacity 
-                    activeOpacity = {0.5} 
-                    onPress = {()=>{this.pushToNewsDetail.bind(this)}}
+                    activeOpacity = {0.5}
+                    onPress = {()=>{this.pushToNewsDetail(rowdata)}}
                 >
                 <View style = {style = cellStyles.cell}>
                     {/*左边*/}
@@ -76,10 +76,9 @@ export default class Home extends Component<Props> {
                     }  
                 })}
                 bannerHeight = {200}
-                touchAction = {(obj)=>{
-                    console.log(obj.key)
-                    console.log("-------------")
-
+                touchAction = {(index)=>{
+                   let data = this.state.headerDataArr[index];
+                   this.pushToNewsDetail(data);
                 }}
             />
         )
@@ -124,6 +123,7 @@ export default class Home extends Component<Props> {
     }
     //action
     pushToNewsDetail(data){
+        console.log("****************************");
         console.log(data);
         console.log("****************************");
 
