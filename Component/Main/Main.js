@@ -8,6 +8,10 @@ import {
 } from 'react-native';
 //外部组件类
 import TabNavigator from 'react-native-tab-navigator';
+let Home = require('../Home/Home.js');
+let Mine = require('../Mine/Mine.js');
+let More = require('../More/More.js');
+let Shop = require('../Shop/Shop.js');
 
 
 type Props = {};
@@ -29,7 +33,7 @@ export default class Main extends Component<Props> {
 				    renderIcon={() => <Image source = {{uri:"icon_tabbar_homepage"}} style = {itemStyles.icon} />}
 				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_homepage_selected"}} style = {itemStyles.icon} />}
 				    onPress={() => this.setState({ selectedTab: 'home' })}>
-				    {<View style = {{backgroundColor:"red",flex:1}}></View>}
+					<Home />
   				</TabNavigator.Item>
 
 				{/*添加shop*/}
@@ -39,7 +43,7 @@ export default class Main extends Component<Props> {
 				    renderIcon={() => <Image source = {{uri:"icon_tabbar_merchant_normal"}} style = {itemStyles.icon} />}
 				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_merchant_selected"}} style = {itemStyles.icon} />}
 				    onPress={() => this.setState({ selectedTab: 'shop' })}>
-				    {<View style = {{backgroundColor:"red",flex:1}}></View>}
+				    <Shop />
   				</TabNavigator.Item>
 
   				{/*添加more*/}
@@ -49,7 +53,7 @@ export default class Main extends Component<Props> {
 				    renderIcon={() => <Image source = {{uri:"icon_tabbar_misc"}} style = {itemStyles.icon} />}
 				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_misc_selected"}} style = {itemStyles.icon} />}
 				    onPress={() => this.setState({ selectedTab: 'more' })}>
-				    {<View style = {{backgroundColor:"red",flex:1}}></View>}
+				    <More />
   				</TabNavigator.Item>
 
   				{/*添加Mine*/}
@@ -59,10 +63,8 @@ export default class Main extends Component<Props> {
 				    renderIcon={() => <Image source = {{uri:"icon_tabbar_mine"}} style = {itemStyles.icon} />}
 				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_mine_selected"}} style = {itemStyles.icon} />}
 				    onPress={() => this.setState({ selectedTab: 'mine' })}>
-				    {<View style = {{backgroundColor:"red",flex:1}}></View>}
+				    <Mine />
   				</TabNavigator.Item>
-  				
-
 			</TabNavigator>
     	);
   	}
@@ -86,7 +88,6 @@ const itemStyles = StyleSheet.create({
 		height:30,
 	},
 	item:{
-		tint:
 		
 	},
 });

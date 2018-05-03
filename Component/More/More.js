@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
 		margin:10,
 	},
 });
-
+module.exports = More;
