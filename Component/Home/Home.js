@@ -4,14 +4,23 @@ import {
     StyleSheet,
     View,
     Text,
-    
-
 } from 'react-native';
 
-
 type Props = {};
-export default class Home extends Component<Props> {
+class Home extends Component<Props> {
+	
+	static navigationOptions = {
+	    title: 'Home',
+	    headerStyle: {
+	      backgroundColor: '#212121',
+	    },
+	    headerTitleStyle: {
+	      color: '#fff'
+	    }
+	};
 	render() {
+		let navigate  = this.props.navigation;
+		console.log(navigate);
 		return (
 			<View style = {styles.container}>
 				<Text style = {styles.welcome}>
@@ -33,6 +42,5 @@ const styles = StyleSheet.create({
 		textAlign:"center",
 		margin:10,
 	},
-});
-
+})    
 module.exports = Home;

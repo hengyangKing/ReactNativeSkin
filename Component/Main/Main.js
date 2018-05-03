@@ -5,17 +5,24 @@ import {
     View,
     Text,
  	Image,
+ 	
 } from 'react-native';
+
+
+
 //外部组件类
 import TabNavigator from 'react-native-tab-navigator';
+
 let Home = require('../Home/Home.js');
+let Home_2 = require('../Home/Home_2.js');
+
 let Mine = require('../Mine/Mine.js');
 let More = require('../More/More.js');
 let Shop = require('../Shop/Shop.js');
 
-
 type Props = {};
 export default class Main extends Component<Props> {
+
 	constructor(Props){  
         super(Props);    
         this.state = {  
@@ -23,6 +30,7 @@ export default class Main extends Component<Props> {
 		}
 	} 
 	render() {
+
 		return (
 			<TabNavigator>
 				{/*添加items*/}
@@ -65,6 +73,7 @@ export default class Main extends Component<Props> {
 				    onPress={() => this.setState({ selectedTab: 'mine' })}>
 				    <Mine />
   				</TabNavigator.Item>
+  				
 			</TabNavigator>
     	);
   	}
@@ -91,5 +100,8 @@ const itemStyles = StyleSheet.create({
 		
 	},
 });
+
+
+
 
 module.exports = Main;
