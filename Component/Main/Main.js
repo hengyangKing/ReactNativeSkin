@@ -11,7 +11,8 @@ import {
 
 
 //外部组件类
-import TabNavigator from 'react-native-tab-navigator';
+// import TabNavigator from 'react-native-tab-navigator';
+import {StackNavigator,TabNavigator} from 'react-navigation';
 
 let Home = require('../Home/Home.js');
 let Home_2 = require('../Home/Home_2.js');
@@ -30,8 +31,16 @@ export default class Main extends Component<Props> {
 		}
 	} 
 	render() {
+		return this.Test();
+		return  this.normalTabbar();
+  	}
+	Test(){
+		return <AppNav />
 
-		return (
+
+	}
+  	normalTabbar(){
+  		return (
 			<TabNavigator>
 				{/*添加items*/}
 				{/*添加home*/}
@@ -101,6 +110,27 @@ const itemStyles = StyleSheet.create({
 	},
 });
 
+const HomeNav = StackNavigator({
+	Home:{screen:Home},
+	Home_2:{screen:Home_2}
+});
+// 通过TabNavigator做路由映射
+const MainTabNavigator = TabNavigator({
+    HomeVC:{screen:HomeNav},
+    ShopVC:{screen:Shop},
+    MoreVC:{screen:More},
+    MineVC:{screen:Mine},
+
+});
+
+
+
+const AppNav = ()=>(
+	<MainTabNavigator />
+
+		
+
+);
 
 
 

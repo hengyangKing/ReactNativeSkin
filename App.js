@@ -14,10 +14,18 @@ import {
 } from 'react-native';
 let Main = require('./Component/Main/Main.js');
 
+
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return (
+	return this.Main();
+  }
+  TestMain(){
+
+  }
+  Main(){
+  	return (
       <Main />
     );
   }
