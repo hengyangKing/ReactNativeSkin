@@ -12,9 +12,7 @@ import {
 type Props = {};
 export default class Shop extends Component<Props> {
 	static navigationOptions = {
-	    headerTitle: '商城',
-	    tabBarLabel: '商城',
-	    tabBarIcon:<View style={{height:30,width:30,backgroundColor:'red'}}></View>
+	    
   	};
 
 

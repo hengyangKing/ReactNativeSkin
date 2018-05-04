@@ -19,16 +19,14 @@ let Main = require('./Component/Main/Main.js');
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-	return this.Main();
-  }
-  TestMain(){
-
+	 return this.Main();
   }
   Main(){
   	return (
       <Main />
     );
   }
+  
 }
 
 

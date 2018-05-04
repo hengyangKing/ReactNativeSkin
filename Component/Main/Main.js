@@ -13,6 +13,7 @@ import {
 //外部组件类
 import {StackNavigator,TabNavigator} from 'react-navigation';
 
+
 let Home = require('../Home/Home.js');
 let Home_2 = require('../Home/Home_2.js');
 
@@ -30,14 +31,10 @@ export default class Main extends Component<Props> {
 		}
 	} 
 	render() {
-		return this.Test();
-		return  this.normalTabbar();
+		return 	<MainTabbar />;
+		return this.normalTabbar();
   	}
-	Test(){
-		return <AppNav />
-
-
-	}
+  	
   	normalTabbar(){
   		return (
 			<TabNavigator>
@@ -109,27 +106,56 @@ const itemStyles = StyleSheet.create({
 	},
 });
 
+
 const HomeNav = StackNavigator({
 	Home:{screen:Home},
 	Home_2:{screen:Home_2},
 	
+},{
+	initialRouteName: 'Home',
+	navigationOptions : {
+	    headerTitle: '首页',
+  	}
+
 });
-
-
 // 通过TabNavigator做路由映射
 const MainTabbar = TabNavigator({
     HomeVC:{screen:HomeNav},
-    ShopVC:{screen:Shop},
-    MoreVC:{screen:More},
-    MineVC:{screen:Mine},
+    // ShopVC:{screen:Shop},
+    // MoreVC:{screen:More},
+    // MineVC:{screen:Mine},
 
+},{
+	navigationOptions: ({ navigation }) => ({
+
+    	tabBarIcon: ({ focused, tintColor }) => {
+
+    		console.log("*********************************");
+    		const { routeName } = navigation.state;
+    		console.log(routeName);
+        	let iconName;
+        	if (routeName === 'HomeVC') {
+          		iconName = "icon_tabbar_homepage";
+        	} else if (routeName === 'ShopVC') {
+          		iconName = "icon_tabbar_merchant_normal";
+        	}else if (routeName === 'MoreVC') {
+          		iconName = "icon_tabbar_misc";
+        	}else if (routeName === 'MineVC') {
+          		iconName = "icon_tabbar_mine";
+        	}
+        	return <Image source = {{uri:iconName}} style = {{height:30,width:30}} />;
+    	},
+
+    }),
+
+    tabBarOptions:{
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+    },
+    // tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    animationEnabled: false,
+    swipeEnabled: false,
 });
-
-const AppNav = ()=>(
-	<MainTabbar />
-
-);
-
-
 
 module.exports = Main;

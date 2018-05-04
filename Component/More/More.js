@@ -12,9 +12,9 @@ import {
 type Props = {};
 export default class More extends Component<Props> {
 	static navigationOptions = {
-	    headerTitle: '更多',
-	    tabBarLabel: '更多',
-	    tabBarIcon:<View style={{height:30,width:30,backgroundColor:'red'}}></View>
+	    // headerTitle: '更多',
+	    // tabBarLabel: '更多',
+	    // tabBarIcon:<View style={{height:30,width:30,backgroundColor:'red'}}></View>
   	};
 	render() {
 		return (

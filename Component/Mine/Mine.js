@@ -12,9 +12,7 @@ import {
 type Props = {};
 export default class Mine extends Component<Props> {
 	static navigationOptions = {
-	    headerTitle: '我的',
-	    tabBarLabel: '我的',
-	    tabBarIcon:<View style={{height:30,width:30,backgroundColor:'red'}}></View>
+	    
   	};
 	render() {
 		return (
