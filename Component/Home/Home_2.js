@@ -9,14 +9,15 @@ import {
 type Props = {};
 class Home_2 extends Component<Props> {
 	//接收上一个页面传过来的title显示出来
-	static navigationOptions = ({ navigation }) => ({
+	static navigationOptions = (({ navigation }) => ({
 		title: navigation.state.params.title
-	});
+		
+	}));
 	// 点击返回上一页方法
-	backVC=()=>{
+	backVC=(()=>{
 		//返回首页方法
 		this.props.navigation.goBack();
-	}
+	})
 
 
 

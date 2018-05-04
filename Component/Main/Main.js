@@ -11,7 +11,6 @@ import {
 
 
 //外部组件类
-// import TabNavigator from 'react-native-tab-navigator';
 import {StackNavigator,TabNavigator} from 'react-navigation';
 
 let Home = require('../Home/Home.js');
@@ -112,10 +111,13 @@ const itemStyles = StyleSheet.create({
 
 const HomeNav = StackNavigator({
 	Home:{screen:Home},
-	Home_2:{screen:Home_2}
+	Home_2:{screen:Home_2},
+	
 });
+
+
 // 通过TabNavigator做路由映射
-const MainTabNavigator = TabNavigator({
+const MainTabbar = TabNavigator({
     HomeVC:{screen:HomeNav},
     ShopVC:{screen:Shop},
     MoreVC:{screen:More},
@@ -123,12 +125,8 @@ const MainTabNavigator = TabNavigator({
 
 });
 
-
-
 const AppNav = ()=>(
-	<MainTabNavigator />
-
-		
+	<MainTabbar />
 
 );
 

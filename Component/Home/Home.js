@@ -13,7 +13,9 @@ type Props = {};
 class Home extends Component<Props> {
 	
 	static navigationOptions = {
-	    headerTitle: '首页123',//对页面的配置
+		
+
+	    headerTitle: '首页',//对页面的配置
 	    tabBarLabel: '首页',
 	    tabBarIcon:<View style={{height:30,width:30,backgroundColor:'red'}}></View>
   	};
