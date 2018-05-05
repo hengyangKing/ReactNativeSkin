@@ -16,28 +16,32 @@ class Home extends Component<Props> {
 	static navigationOptions  = {
 		
 
-	    // headerTitle: '首页',//对页面的配置
-	    // tabBarLabel: '首页',
-	 //    tabBarIcon:<Image source = {{uri:"icon_tabbar_homepage"}} style = {{height:30,width:30}} />,
-		// tabBarSelectedIcon:<Image source = {{uri:"icon_tabbar_homepage_selected"}} style = {{height:30,width:30}} />,
+	    headerTitle: '首页首页',//对页面的配置
+	    tabBarLabel: '首页首页首页',
+	    tabBarIcon:<Image source = {{uri:"icon_tabbar_homepage"}} style = {{height:30,width:30}} />,
+		tabBarSelectedIcon:<Image source = {{uri:"icon_tabbar_homepage_selected"}} style = {{height:30,width:30}} />,
   	};
 
 	render() {
-		// let navigate  = this.props.navigation;
-		// console.log("***********************************************");
-		// console.log(navigate);
+		let navigate  = this.props.navigation;
+		console.log("***********************************************");
+		console.log(navigate);
 		return (
 			<View style = {styles.container}>
 				<Text style = {styles.welcome}>
 					Home
 				</Text>
-				<TouchableOpacity onPress = {()=>this.props.navigation.navigate('Home_2',{title:"123"})}>
+				<TouchableOpacity onPress ={()=>{this.pushToDetail('Home_2',{title:"123"})}
+				}>
 					<Text style = {styles.welcome}>
 						跳转
 					</Text>
 				</TouchableOpacity>
 			</View>
     );
+  }
+  pushToDetail(navigateTo, params, action){
+		this.props.navigation.navigate(navigateTo,params,action)
   }
 }
 const styles = StyleSheet.create({

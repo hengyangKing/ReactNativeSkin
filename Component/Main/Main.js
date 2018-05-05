@@ -32,7 +32,6 @@ export default class Main extends Component<Props> {
 	} 
 	render() {
 		return 	<MainTabbar />;
-		return this.normalTabbar();
   	}
   	
   	normalTabbar(){
@@ -107,55 +106,64 @@ const itemStyles = StyleSheet.create({
 });
 
 
-const HomeNav = StackNavigator({
+const HomeStack = StackNavigator({
 	Home:{screen:Home},
-	Home_2:{screen:Home_2},
+	// Details:{screen:Home_2},
 	
 },{
-	initialRouteName: 'Home',
-	navigationOptions : {
-	    headerTitle: '首页',
-  	}
 
 });
+
+const MineStack = StackNavigator({
+  Mine: { screen: Mine },
+},{
+
+});
+
+
+
 // 通过TabNavigator做路由映射
 const MainTabbar = TabNavigator({
-    HomeVC:{screen:HomeNav},
+    HomeVC:{screen:HomeStack},
     // ShopVC:{screen:Shop},
     // MoreVC:{screen:More},
-    // MineVC:{screen:Mine},
+    MineVC:{screen:MineStack},
 
 },{
 	navigationOptions: ({ navigation }) => ({
-
     	tabBarIcon: ({ focused, tintColor }) => {
-
-    		console.log("*********************************");
     		const { routeName } = navigation.state;
-    		console.log(routeName);
+    		console.log("******************");
+
+    		console.log(navigation);
+
         	let iconName;
         	if (routeName === 'HomeVC') {
-          		iconName = "icon_tabbar_homepage";
-        	} else if (routeName === 'ShopVC') {
-          		iconName = "icon_tabbar_merchant_normal";
-        	}else if (routeName === 'MoreVC') {
-          		iconName = "icon_tabbar_misc";
-        	}else if (routeName === 'MineVC') {
-          		iconName = "icon_tabbar_mine";
+          		iconName = 'black';
+        	} else if (routeName === 'MineVC') {
+          		iconName = 'red';
         	}
-        	return <Image source = {{uri:iconName}} style = {{height:30,width:30}} />;
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        	return <View style = {{width:30,height:30,backgroundColor:iconName}}></View>
     	},
+ 		style: {
+ 			
+  		},
 
     }),
 
-    tabBarOptions:{
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    },
-    // tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    animationEnabled: false,
-    swipeEnabled: false,
+
+	tabBarOptions: ({ navigation }) => ({
+
+  		activeTintColor: 'yellow',
+  		inactiveTintColor:'green',
+  		labelStyle: {
+   			fontSize: 12,
+  		},
+	})
+ 
 });
 
 module.exports = Main;

@@ -10,7 +10,8 @@ type Props = {};
 class Home_2 extends Component<Props> {
 	//接收上一个页面传过来的title显示出来
 	static navigationOptions = (({ navigation }) => ({
-		title: navigation.state.params.title
+		title: navigation.state.params.title,
+		tabBarVisible:false,
 		
 	}));
 	// 点击返回上一页方法
