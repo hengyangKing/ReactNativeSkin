@@ -33,18 +33,13 @@ export default class Main extends Component<Props> {
         this.state = {  
 		}
 	} 
-
 	render() {
 		return 	<MainNavigator />;
   	}
 }
-
-
-
-
 // 通过TabNavigator做路由映射
 const MainTabbar = TabNavigator({
-    HomeVC:{
+	HomeVC:{
     	screen:Home,
     	navigationOptions:({navigation}) => ({  
         	tabBarLabel:'首页',  
@@ -72,9 +67,9 @@ const MainTabbar = TabNavigator({
           	)  
         }),  
   	}
+    
 },{
 
-	// tabBarComponent:'bottom',  
     tabBarPosition:'bottom',  
     swipeEnabled:false,  
 	animationEnabled:false,  
@@ -84,7 +79,7 @@ const MainTabbar = TabNavigator({
 	inactiveTintColor:'#979797',// 未激活主题颜色
 	style:{backgroundColor:'#ffffff',},  
 	labelStyle: {  
-		// fontSize: 12, // 文字大小  
+
 	},  
 	}  
 });
