@@ -16,10 +16,10 @@ class Home extends Component<Props> {
 	static navigationOptions  = {
 		
 
-	    headerTitle: '首页首页',//对页面的配置
-	    tabBarLabel: '首页首页首页',
-	    tabBarIcon:<Image source = {{uri:"icon_tabbar_homepage"}} style = {{height:30,width:30}} />,
-		tabBarSelectedIcon:<Image source = {{uri:"icon_tabbar_homepage_selected"}} style = {{height:30,width:30}} />,
+	 //    headerTitle: '首页首页',//对页面的配置
+	 //    tabBarLabel: '首页首页首页',
+	 //    tabBarIcon:<Image source = {{uri:"icon_tabbar_homepage"}} style = {{height:30,width:30}} />,
+		// tabBarSelectedIcon:<Image source = {{uri:"icon_tabbar_homepage_selected"}} style = {{height:30,width:30}} />,
   	};
 
 	render() {
@@ -41,6 +41,7 @@ class Home extends Component<Props> {
     );
   }
   pushToDetail(navigateTo, params, action){
+  		
 		this.props.navigation.navigate(navigateTo,params,action)
   }
 }

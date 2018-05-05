@@ -21,149 +21,85 @@ let Mine = require('../Mine/Mine.js');
 let More = require('../More/More.js');
 let Shop = require('../Shop/Shop.js');
 
+
+
+let TabBarItem = require('./TabbarItem.js');
+
 type Props = {};
 export default class Main extends Component<Props> {
 
 	constructor(Props){  
         super(Props);    
         this.state = {  
-           	selectedTab :"home",  
 		}
 	} 
+
 	render() {
-		return 	<MainTabbar />;
-  	}
-  	
-  	normalTabbar(){
-  		return (
-			<TabNavigator>
-				{/*添加items*/}
-				{/*添加home*/}
-				<TabNavigator.Item
-    				selected={this.state.selectedTab === 'home'}
-    				title="Home"
-				    renderIcon={() => <Image source = {{uri:"icon_tabbar_homepage"}} style = {itemStyles.icon} />}
-				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_homepage_selected"}} style = {itemStyles.icon} />}
-				    onPress={() => this.setState({ selectedTab: 'home' })}>
-					<Home />
-  				</TabNavigator.Item>
-
-				{/*添加shop*/}
-  				<TabNavigator.Item
-    				selected={this.state.selectedTab === 'shop'}
-    				title="Shop"
-				    renderIcon={() => <Image source = {{uri:"icon_tabbar_merchant_normal"}} style = {itemStyles.icon} />}
-				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_merchant_selected"}} style = {itemStyles.icon} />}
-				    onPress={() => this.setState({ selectedTab: 'shop' })}>
-				    <Shop />
-  				</TabNavigator.Item>
-
-  				{/*添加more*/}
-  				<TabNavigator.Item
-    				selected={this.state.selectedTab === 'more'}
-    				title="More"
-				    renderIcon={() => <Image source = {{uri:"icon_tabbar_misc"}} style = {itemStyles.icon} />}
-				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_misc_selected"}} style = {itemStyles.icon} />}
-				    onPress={() => this.setState({ selectedTab: 'more' })}>
-				    <More />
-  				</TabNavigator.Item>
-
-  				{/*添加Mine*/}
-  				<TabNavigator.Item
-    				selected={this.state.selectedTab === 'mine'}
-    				title="Mine"
-				    renderIcon={() => <Image source = {{uri:"icon_tabbar_mine"}} style = {itemStyles.icon} />}
-				    renderSelectedIcon={() => <Image source = {{uri:"icon_tabbar_mine_selected"}} style = {itemStyles.icon} />}
-				    onPress={() => this.setState({ selectedTab: 'mine' })}>
-				    <Mine />
-  				</TabNavigator.Item>
-  				
-			</TabNavigator>
-    	);
+		return 	<MainNavigator />;
   	}
 }
-const styles = StyleSheet.create({
-	container:{
-		flex:1,
-		justifyContent:"center",
-		alignItems:"center",
-		backgroundColor:"#f5fcff",
-	},
-	welcome:{
-		fontSize:20,
-		textAlign:"center",
-		margin:10,
-	},
-});
-const itemStyles = StyleSheet.create({
-	icon:{
-		width:30,
-		height:30,
-	},
-	item:{
-		
-	},
-});
 
-
-const HomeStack = StackNavigator({
-	Home:{screen:Home},
-	// Details:{screen:Home_2},
-	
-},{
-
-});
-
-const MineStack = StackNavigator({
-  Mine: { screen: Mine },
-},{
-
-});
 
 
 
 // 通过TabNavigator做路由映射
 const MainTabbar = TabNavigator({
-    HomeVC:{screen:HomeStack},
-    // ShopVC:{screen:Shop},
-    // MoreVC:{screen:More},
-    MineVC:{screen:MineStack},
-
+    HomeVC:{
+    	screen:Home,
+    	navigationOptions:({navigation}) => ({  
+        	tabBarLabel:'首页',  
+        	tabBarIcon:({focused,tintColor}) => (  
+	        	<TabBarItem  
+	        		tintColor={tintColor}  
+	            	focused={focused}  
+	            	normalImage={{uri:"icon_tabbar_homepage"}}  
+	            	selectedImage={{uri:"icon_tabbar_homepage_selected"}}  
+	        	/>  
+      		)  
+    	}),  
+    },
+    MineVC:{
+		screen:Mine,  
+		navigationOptions:({navigation}) => ({  
+        	tabBarLabel:'我',  
+        	tabBarIcon:({focused,tintColor}) => (  
+            	<TabBarItem  
+             		tintColor={tintColor}  
+              		focused={focused}  
+              		normalImage={{uri:"icon_tabbar_mine"}}  
+              		selectedImage={{uri:"icon_tabbar_mine_selected"}}  
+        		/>  
+          	)  
+        }),  
+  	}
 },{
-	navigationOptions: ({ navigation }) => ({
-    	tabBarIcon: ({ focused, tintColor }) => {
-    		const { routeName } = navigation.state;
-    		console.log("******************");
 
-    		console.log(navigation);
-
-        	let iconName;
-        	if (routeName === 'HomeVC') {
-          		iconName = 'black';
-        	} else if (routeName === 'MineVC') {
-          		iconName = 'red';
-        	}
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        	return <View style = {{width:30,height:30,backgroundColor:iconName}}></View>
-    	},
- 		style: {
- 			
-  		},
-
-    }),
-
-
-	tabBarOptions: ({ navigation }) => ({
-
-  		activeTintColor: 'yellow',
-  		inactiveTintColor:'green',
-  		labelStyle: {
-   			fontSize: 12,
-  		},
-	})
- 
+	// tabBarComponent:'bottom',  
+    tabBarPosition:'bottom',  
+    swipeEnabled:false,  
+	animationEnabled:false,  
+	lazy:true,  
+	tabBarOptions:{  
+	// activeTintColor:'#06c1ae',//激活主题颜色
+	// inactiveTintColor:'#979797',// 未激活主题颜色
+	style:{backgroundColor:'#ffffff',},  
+	labelStyle: {  
+	      fontSize: 14, // 文字大小  
+	  },  
+	}  
 });
+const MainNavigator = StackNavigator({
 
+		Tabbar:{screen:MainTabbar},  
+		// Product:{screen:ProductScreen}  
+	},{  
+		navigationOptions:{  
+		headerBackTitle:null,  
+		headerTintColor:'#333333',  
+		showIcon:true,  
+		swipeEnabled:false,  
+		sanimationEnabled:false,  
+	},  
+	mode:'card',  
+});
 module.exports = Main;
