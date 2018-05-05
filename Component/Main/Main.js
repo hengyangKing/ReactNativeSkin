@@ -37,6 +37,7 @@ export default class Main extends Component<Props> {
 		return 	<MainNavigator />;
   	}
 }
+
 // 通过TabNavigator做路由映射
 const MainTabbar = TabNavigator({
 	HomeVC:{
@@ -53,17 +54,45 @@ const MainTabbar = TabNavigator({
       		)  
     	}),  
     },
+    ShopVC:{
+    	screen:Shop,
+    	navigationOptions:({navigation}) => ({  
+        	tabBarLabel:'商城',  
+        	tabBarIcon:({focused,tintColor}) => (  
+	        	<TabBarItem  
+	        		tintColor={tintColor}  
+	            	focused={focused}  
+	            	normalImage={{uri:"icon_tabbar_merchant_normal"}}  
+	            	selectedImage={{uri:"icon_tabbar_merchant_selected"}}  
+	        	/>  
+      		)  
+    	}),  
+    },
+    MoreVC:{
+    	screen:More,
+    	navigationOptions:({navigation}) => ({  
+        	tabBarLabel:'更多',  
+        	tabBarIcon:({focused,tintColor}) => (  
+	        	<TabBarItem  
+	        		tintColor={tintColor}  
+	            	focused={focused}  
+	            	normalImage={{uri:"icon_tabbar_misc"}}  
+	            	selectedImage={{uri:"icon_tabbar_misc_selected"}}  
+	        	/>  
+      		)  
+    	}),  
+    },
     MineVC:{
 		screen:Mine,  
 		navigationOptions:({navigation}) => ({  
-        	tabBarLabel:'我',  
-        	tabBarIcon:({focused,tintColor}) => (  
+        	tabBarLabel:'我的',  
+        	tabBarIcon:({focused,tintColor}) => (
             	<TabBarItem  
              		tintColor={tintColor}  
               		focused={focused}  
               		normalImage={{uri:"icon_tabbar_mine"}}  
               		selectedImage={{uri:"icon_tabbar_mine_selected"}}  
-        		/>  
+        		/> 
           	)  
         }),  
   	}
@@ -75,14 +104,15 @@ const MainTabbar = TabNavigator({
 	animationEnabled:false,  
 	lazy:true,  
 	tabBarOptions:{  
-	activeTintColor:'#FF7F50',//激活主题颜色
-	inactiveTintColor:'#979797',// 未激活主题颜色
-	style:{backgroundColor:'#ffffff',},  
-	labelStyle: {  
+		activeTintColor:'#FF7F50',//激活主题颜色
+		inactiveTintColor:'#979797',// 未激活主题颜色
+		style:{backgroundColor:'#ffffff',},  
+		labelStyle: {  
 
-	},  
+		},  
 	}  
 });
+
 const MainNavigator = StackNavigator({
 
 		Tabbar:{screen:MainTabbar},  

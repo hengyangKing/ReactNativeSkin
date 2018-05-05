@@ -8,9 +8,16 @@ export default class TabBarItem extends Component {
                 style={iconStyle.item}  
             />  
         )  
-    }  
+    }
+    getTabBarItem(iconPar,normalImage,selectedImage){
+	return <TabBarItem  
+             		tintColor={iconPar.tintColor}  
+              		focused={iconPar.focused}  
+              		normalImage={normalImage}  
+              		selectedImage={selectedImage}  
+        	/>  
+	}  
 }  
-
 const iconStyle = StyleSheet.create({
 	item:{
 		width:30,
