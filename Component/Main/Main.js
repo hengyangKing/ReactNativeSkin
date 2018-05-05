@@ -80,18 +80,18 @@ const MainTabbar = TabNavigator({
 	animationEnabled:false,  
 	lazy:true,  
 	tabBarOptions:{  
-	// activeTintColor:'#06c1ae',//激活主题颜色
-	// inactiveTintColor:'#979797',// 未激活主题颜色
+	activeTintColor:'#FF7F50',//激活主题颜色
+	inactiveTintColor:'#979797',// 未激活主题颜色
 	style:{backgroundColor:'#ffffff',},  
 	labelStyle: {  
-	      fontSize: 14, // 文字大小  
-	  },  
+		// fontSize: 12, // 文字大小  
+	},  
 	}  
 });
 const MainNavigator = StackNavigator({
 
 		Tabbar:{screen:MainTabbar},  
-		// Product:{screen:ProductScreen}  
+		Home_2:{screen:Home_2}  
 	},{  
 		navigationOptions:{  
 		headerBackTitle:null,  
