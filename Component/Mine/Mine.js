@@ -16,7 +16,10 @@ export default class Mine extends Component<Props> {
 	static navigationOptions = (({ navigation }) => ({
 		headerTitle:"我的",
 		headerRight:<View style = {{width:60,height:44}}>
-						<Image source = {{uri:"icon_mine_setting"}} style = {{width:30,height:30,alignItems:"center",marginRight:30}}/>
+						<Image 
+							source = {{uri:"icon_mine_setting"}} 
+							style = {{width:30,height:30,alignItems:"center",marginRight:30}}
+						/>
 					</View>,
 	}));
 	render() {
