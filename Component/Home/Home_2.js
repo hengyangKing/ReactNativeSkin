@@ -4,24 +4,15 @@ import {
     StyleSheet,
     View,
     Text,
+    TouchableOpacity,
 } from 'react-native';
 
 type Props = {};
 class Home_2 extends Component<Props> {
 	//接收上一个页面传过来的title显示出来
 	static navigationOptions = (({ navigation }) => ({
-		title: navigation.state.params.title,
-		tabBarVisible:false,
-		
+		title: navigation.state.params.headerTitle,
 	}));
-	// 点击返回上一页方法
-	backVC=(()=>{
-		//返回首页方法
-		this.props.navigation.goBack();
-	})
-
-
-
 	render() {
 		let navigate  = this.props.navigation;
 		console.log(navigate);
@@ -30,9 +21,19 @@ class Home_2 extends Component<Props> {
 				<Text style = {styles.welcome}>
 					Home_2
 				</Text>
+				<TouchableOpacity onPress ={()=>{this.backVC()}
+				}>
+					<Text style = {styles.welcome}>
+						返回
+					</Text>
+				</TouchableOpacity>
 			</View>
-    );
-  }
+    	);
+	}
+	
+  	backVC(){
+		this.props.navigation.goBack();
+	}
 }
 const styles = StyleSheet.create({
 	container:{

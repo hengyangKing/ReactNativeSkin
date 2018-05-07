@@ -8,8 +8,6 @@ import {
  	
 } from 'react-native';
 
-
-
 //外部组件类
 import {StackNavigator,TabNavigator} from 'react-navigation';
 
@@ -21,9 +19,8 @@ let Mine = require('../Mine/Mine.js');
 let More = require('../More/More.js');
 let Shop = require('../Shop/Shop.js');
 
-
-
 let TabBarItem = require('./TabbarItem.js');
+
 
 type Props = {};
 export default class Main extends Component<Props> {
@@ -34,9 +31,12 @@ export default class Main extends Component<Props> {
 		}
 	} 
 	render() {
+
 		return 	<MainNavigator />;
   	}
+
 }
+
 
 // 通过TabNavigator做路由映射
 const MainTabbar = TabNavigator({
@@ -51,7 +51,7 @@ const MainTabbar = TabNavigator({
 	            	normalImage={{uri:"icon_tabbar_homepage"}}  
 	            	selectedImage={{uri:"icon_tabbar_homepage_selected"}}  
 	        	/>  
-      		)  
+      		)
     	}),  
     },
     ShopVC:{
@@ -95,8 +95,7 @@ const MainTabbar = TabNavigator({
         		/> 
           	)  
         }),  
-  	}
-    
+  	} 
 },{
 
     tabBarPosition:'bottom',  
@@ -119,11 +118,11 @@ const MainNavigator = StackNavigator({
 		Home_2:{screen:Home_2}  
 	},{  
 		navigationOptions:{  
-		headerBackTitle:null,  
-		headerTintColor:'#333333',  
-		showIcon:true,  
-		swipeEnabled:false,  
-		sanimationEnabled:false,  
+			// headerBackTitle:null,  
+			headerTintColor:'#333333',  
+			// // showIcon:true,  
+			// swipeEnabled:false,  
+			// sanimationEnabled:false,  
 	},  
 	mode:'card',  
 });
