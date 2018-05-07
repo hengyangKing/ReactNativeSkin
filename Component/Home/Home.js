@@ -9,14 +9,11 @@ import {
 } from 'react-native';
 
 let Home_2 = require('./Home_2.js');
-let Nav = require('../Views/SearchBarNav/SearchBarNav.js');
+let Nav = require('../Views/Nav/SearchBarNav.js');
 
 type Props = {};
 class Home extends Component<Props> {
 	static navigationOptions = (({ navigation }) => ({
-		// console.log(navigation.state);
-		// title: navigation.state.params.title,
-		headerTitle: <View styles = {{backgroundColor:"yellow"}}></View>,
 		header: <Nav 
 					leftClick = {()=>{console.log("123")}}
 					rightClick = {()=>{console.log("456")}}

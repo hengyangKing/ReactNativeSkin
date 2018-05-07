@@ -4,6 +4,8 @@ import {
     StyleSheet,
     View,
     Text,
+    Image,
+    TouchableOpacity,
     
 
 } from 'react-native';
@@ -11,9 +13,12 @@ import {
 
 type Props = {};
 export default class Mine extends Component<Props> {
-	static navigationOptions = {
-	    
-  	};
+	static navigationOptions = (({ navigation }) => ({
+		headerTitle:"我的",
+		headerRight:<View style = {{width:60,height:44}}>
+						<Image source = {{uri:"icon_mine_setting"}} style = {{width:30,height:30,alignItems:"center",marginRight:30}}/>
+					</View>,
+	}));
 	render() {
 		return (
 			<View style = {styles.container}>
@@ -21,8 +26,10 @@ export default class Mine extends Component<Props> {
 					Mine
 				</Text>
 			</View>
-    );
-  }
+
+    	);
+  	}
+  	
 }
 const styles = StyleSheet.create({
 	container:{
