@@ -6,10 +6,11 @@ import {
     Text,
     Image,
     TouchableOpacity,
+    ScrollView,
     
 
 } from 'react-native';
-
+var CommonCell = require("./CommonCell.js");
 
 type Props = {};
 export default class Mine extends Component<Props> {
@@ -25,9 +26,27 @@ export default class Mine extends Component<Props> {
 	render() {
 		return (
 			<View style = {styles.container}>
-				<Text style = {styles.welcome}>
-					Mine
-				</Text>
+				<ScrollView>
+					{/*session 0*/}
+					<View style = {{marginTop:10}}>
+						<CommonCell
+							title="扫一扫"
+							touchAction = {()=>{
+								console.log("cell touchUpInSide");
+							}}
+						/>
+					</View>
+					{/*session 1*/}
+					<View style = {{marginTop:10}}>
+						<CommonCell
+							title="是否开启省流模式"
+							isSwitch = {true}
+							touchAction = {(value)=>{
+								console.log("cell touchUpInSide");
+							}}
+						/>
+					</View>
+				</ScrollView>
 			</View>
 
     	);
@@ -37,14 +56,7 @@ export default class Mine extends Component<Props> {
 const styles = StyleSheet.create({
 	container:{
 		flex:1,
-		justifyContent:"center",
-		alignItems:"center",
-		backgroundColor:"#f5fcff",
-	},
-	welcome:{
-		fontSize:20,
-		textAlign:"center",
-		margin:10,
+		backgroundColor:"#e8e8e8",
 	},
 });
 

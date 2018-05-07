@@ -118,11 +118,9 @@ const MainNavigator = StackNavigator({
 		Home_2:{screen:Home_2}  
 	},{  
 		navigationOptions:{  
-			// headerBackTitle:null,  
-			headerTintColor:'#333333',  
-			// // showIcon:true,  
-			// swipeEnabled:false,  
-			// sanimationEnabled:false,  
+			headerTintColor:'#ffffff',  
+			headerBackground: <View style = {{flex:1,backgroundColor:'rgba(255,96,0,1.0)',}}></View>,
+
 	},  
 	mode:'card',  
 });
