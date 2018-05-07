@@ -25,16 +25,26 @@ class BaseNav extends Component<Props> {
 		return this.renderBaseNavBar();
 	}
 	renderBaseNavBar(){
+
 		return(
 			<View style = {barStyles.barStyle}>
-				<View style = {barStyles.stateBarStyle}></View>
-				<View style = {barStyles.navBarStyle}>
-					{this.props.leftView()}
-					{this.props.centerView()}
-					{this.props.rightView()}
-				</View>
+				{this.renderstateBar()}
+				{this.renderNavBar()}
 			</View>
 		)
+	}
+	renderstateBar(){
+		return (<View style = {barStyles.stateBarStyle}></View>);
+	}
+	renderNavBar(){
+		return (
+			<View style = {barStyles.navBarStyle}>
+				{this.props.leftView()}
+				{this.props.centerView()}
+				{this.props.rightView()}
+			</View>
+		)
+
 	}
 }
 const barStyles = StyleSheet.create({
@@ -55,7 +65,6 @@ const barStyles = StyleSheet.create({
 		justifyContent:'space-between',
         paddingLeft:14,
         paddingRight:14,
-
 	},
 }) 
 BaseNav.defaultProps = {
