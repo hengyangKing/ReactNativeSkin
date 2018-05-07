@@ -27,9 +27,7 @@ class BaseNav extends Component<Props> {
 	renderBaseNavBar(){
 		return(
 			<View style = {barStyles.barStyle}>
-				<View style = {barStyles.stateBarStyle}>
-					
-				</View>
+				<View style = {barStyles.stateBarStyle}></View>
 				<View style = {barStyles.navBarStyle}>
 					{this.props.leftView()}
 					{this.props.centerView()}
@@ -40,7 +38,6 @@ class BaseNav extends Component<Props> {
 	}
 }
 const barStyles = StyleSheet.create({
-
 	barStyle:{
 		height: getStatusBarH()+navBarH,
         backgroundColor:'rgba(255,96,0,1.0)',
@@ -55,15 +52,17 @@ const barStyles = StyleSheet.create({
 		// 垂直居中 ---> 设置侧轴的对齐方式
 		alignItems:'center',
 		// 设置主轴的对齐方式
-		justifyContent:'space-around',
-        backgroundColor:'green',
+		justifyContent:'space-between',
+        paddingLeft:14,
+        paddingRight:14,
+
 	},
 }) 
 BaseNav.defaultProps = {
 	
-	leftView:()=>{},
-	rightView:()=>{},
-	centerView:()=>{},
+	leftView:()=>{return(<View></View>)},
+	rightView:()=>{return(<View></View>)},
+	centerView:()=>{return(<View></View>)},
 }
     
 
