@@ -15,10 +15,10 @@ type Props = {};
 class Home extends Component<Props> {
 	static navigationOptions = (({ navigation }) => ({
 		header: <Nav 
-					leftClick = {()=>{console.log("123")}}
-					rightClick = {()=>{console.log("456")}}
-
-				/ >
+					locationClick = {()=>{console.log("locationClick")}}
+					messageClick = {()=>{console.log("messageClick")}}
+					scanClick = {()=>{console.log("scanClick")}}
+				/>
 	}));
 
 

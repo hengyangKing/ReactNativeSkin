@@ -29,7 +29,7 @@ class SearchBarNav extends Component<Props> {
 	}
 	renderLeftView(){
 		return (
-			<TouchableOpacity onPress = {()=>this.props.leftClick()}>
+			<TouchableOpacity onPress = {()=>this.props.locationClick()}>
 				<Text style = {style = contentStyles.text}>广州</Text>
 			</TouchableOpacity>
 		)
@@ -37,11 +37,11 @@ class SearchBarNav extends Component<Props> {
 	renderRightView(){
 		return(
 			<View style = {contentStyles.rightView}>
-				<TouchableOpacity onPress = {()=>this.props.rightClick()}>
+				<TouchableOpacity onPress = {()=>this.props.messageClick()}>
 					<Image source={{uri:'icon_homepage_message'}} style={contentStyles.navRightImgStyle}/>
 				</TouchableOpacity>
 				<View style = {{width :5}}></View>
-				<TouchableOpacity onPress={()=>this.props.rightClick()}>
+				<TouchableOpacity onPress={()=>this.props.scanClick()}>
                     <Image source={{uri:'icon_homepage_scan'}} style={contentStyles.navRightImgStyle} />
                 </TouchableOpacity>
 			</View>
@@ -91,8 +91,9 @@ const contentStyles = StyleSheet.create({
 
 })
 SearchBarNav.defaultProps = {
-	leftClick:()=>{},
-	rightClick:()=>{},
+	locationClick:()=>{},
+	messageClick:()=>{},
+	scanClick:()=>{},
 }
     
 
