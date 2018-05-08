@@ -16,7 +16,7 @@ let Home = require('../Home/Home.js');
 let Home_2 = require('../Home/Home_2.js');
 
 let Mine = require('../Mine/Mine.js');
-let More = require('../More/More.js');
+let Setting = require('../Setting/Setting.js');
 let Shop = require('../Shop/Shop.js');
 
 let TabBarItem = require('./TabbarItem.js');
@@ -31,10 +31,8 @@ export default class Main extends Component<Props> {
 		}
 	} 
 	render() {
-
 		return 	<MainNavigator />;
   	}
-
 }
 
 
@@ -66,32 +64,32 @@ const MainTabbar = TabNavigator({
       		)  
     	}),  
     },
-    MoreVC:{
-    	screen:More,
-    	navigationOptions:({navigation}) => ({  
-        	tabBarLabel:'更多',  
-        	tabBarIcon:({focused,tintColor}) => (  
-	        	<TabBarItem  
-	            	focused={focused}  
-	            	normalImage={{uri:"icon_tabbar_misc"}}  
-	            	selectedImage={{uri:"icon_tabbar_misc_selected"}}  
-	        	/>  
-      		)  
-    	}),  
-    },
     MineVC:{
 		screen:Mine,  
-		navigationOptions:({navigation}) => ({  
-        	tabBarLabel:'我的',  
-        	tabBarIcon:({focused,tintColor}) => (
-            	<TabBarItem  
-              		focused={focused}  
-              		normalImage={{uri:"icon_tabbar_mine"}}  
-              		selectedImage={{uri:"icon_tabbar_mine_selected"}}  
-        		/> 
-          	)  
+        navigationOptions:({navigation}) => ({  
+        tabBarLabel:'我的',  
+        tabBarIcon:({focused,tintColor}) => (
+            <TabBarItem  
+          		focused={focused}  
+          		normalImage={{uri:"icon_tabbar_mine"}}  
+          		selectedImage={{uri:"icon_tabbar_mine_selected"}}  
+            /> 
+        )  
         }),  
-  	} 
+  	},
+    SettingVC:{
+        screen:Setting,
+        navigationOptions:({navigation}) => ({  
+            tabBarLabel:'设置',  
+            tabBarIcon:({focused,tintColor}) => (  
+                <TabBarItem  
+                    focused={focused}  
+                    normalImage={{uri:"icon_tabbar_misc"}}  
+                    selectedImage={{uri:"icon_tabbar_misc_selected"}}  
+                />  
+            )  
+        }),  
+    },
 },{
 
     tabBarPosition:'bottom',  
