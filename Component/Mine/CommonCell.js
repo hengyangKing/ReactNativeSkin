@@ -89,7 +89,5 @@ CommonCell.defaultProps = {
 	isSwitch:false,//是否展示开关
 	subTitle:"",//子标题
 	touchAction:(value)=>{},
-
-	
 }
 module.exports = CommonCell;

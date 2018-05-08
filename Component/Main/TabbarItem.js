@@ -4,7 +4,8 @@ import {StyleSheet,Image} from 'react-native';
 export default class TabBarItem extends Component {  
     render() {  
         return(  
-            <Image source={ this.props.focused ? this.props.selectedImage : this.props.normalImage}  
+            <Image 
+                source={this.props.focused ? this.props.selectedImage : this.props.normalImage}  
                 style={iconStyle.item}  
             />  
         )  
@@ -16,4 +17,10 @@ const iconStyle = StyleSheet.create({
 		height:30, 
 	},
 })
+TabBarItem.defaultProps = {
+    focused:false,
+    selectedImage:{},
+    normalImage:{},
+
+}
 module.exports = TabBarItem;

@@ -46,7 +46,6 @@ const MainTabbar = TabNavigator({
         	tabBarLabel:'首页',  
         	tabBarIcon:({focused,tintColor}) => (  
 	        	<TabBarItem  
-	        		tintColor={tintColor}  
 	            	focused={focused}  
 	            	normalImage={{uri:"icon_tabbar_homepage"}}  
 	            	selectedImage={{uri:"icon_tabbar_homepage_selected"}}  
@@ -60,7 +59,6 @@ const MainTabbar = TabNavigator({
         	tabBarLabel:'商城',  
         	tabBarIcon:({focused,tintColor}) => (  
 	        	<TabBarItem  
-	        		tintColor={tintColor}  
 	            	focused={focused}  
 	            	normalImage={{uri:"icon_tabbar_merchant_normal"}}  
 	            	selectedImage={{uri:"icon_tabbar_merchant_selected"}}  
@@ -74,7 +72,6 @@ const MainTabbar = TabNavigator({
         	tabBarLabel:'更多',  
         	tabBarIcon:({focused,tintColor}) => (  
 	        	<TabBarItem  
-	        		tintColor={tintColor}  
 	            	focused={focused}  
 	            	normalImage={{uri:"icon_tabbar_misc"}}  
 	            	selectedImage={{uri:"icon_tabbar_misc_selected"}}  
@@ -88,7 +85,6 @@ const MainTabbar = TabNavigator({
         	tabBarLabel:'我的',  
         	tabBarIcon:({focused,tintColor}) => (
             	<TabBarItem  
-             		tintColor={tintColor}  
               		focused={focused}  
               		normalImage={{uri:"icon_tabbar_mine"}}  
               		selectedImage={{uri:"icon_tabbar_mine_selected"}}  
