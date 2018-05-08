@@ -63,7 +63,6 @@ var {width,height,scale} = require("Dimensions").get("window");
 
 const cellStyles = StyleSheet.create({
 	cell:{
-			height:44,
 			flexDirection:"row",
 			justifyContent:"space-between",
 			alignItems:"center",
@@ -72,7 +71,8 @@ const cellStyles = StyleSheet.create({
 			borderBottomWidth:0.5,
 			paddingLeft:14,
 			paddingRight:14,
-			width:width,
+			height:44,
+			flex:1,
 	},
 	subView:{
 		flexDirection:"row",

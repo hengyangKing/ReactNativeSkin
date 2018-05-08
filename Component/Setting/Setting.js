@@ -52,30 +52,30 @@ export default class Setting extends Component<Props> {
 		return (
 			<View style = {styles.container}>
 				<ScrollView>{
-					this.renderSessions()
+					this.renderSections()
 				}
 				</ScrollView>
 			</View>
     	);
   	}
-  	renderSessions(){
-  		var sessions = [];
+  	renderSections(){
+  		var section = [];
   		console.log(datas);
   		for (var i = 0; i < datas.length; i++) {
-  			let sessiondata = datas[i]
-  			sessions.push(
+  			let sectiondata = datas[i]
+  			section.push(
 				<View style = {{marginTop:10}} key={i}>{
-					this.renderCells(sessiondata)
+					this.renderCells(sectiondata)
 				}
   				</View>
   			)
   		}
-  		return sessions;
+  		return section;
   	}
-  	renderCells(sessiondata){
+  	renderCells(sectiondata){
   		var cells = [];
-  		for (var i = 0; i < sessiondata.length; i++) {
-  			let data = sessiondata[i];
+  		for (var i = 0; i < sectiondata.length; i++) {
+  			let data = sectiondata[i];
   			cells.push(
   				<CommonCell
   					key={i}
