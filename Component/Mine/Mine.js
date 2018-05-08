@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 let MineCell = require("./MineCell.js");
+let ExceptionCell = require("./MineException.js");
+
 let datas = [
 				[
 					{title:"我的订单",subTitle:"查看全部订单",icon:"collect"}
@@ -26,6 +28,7 @@ let datas = [
 					{title:"我要合作",subTitle:"轻松开店，招财进宝",icon:"pay"}
 				],
 			];
+ 
 type Props = {};
 
 export default class Mine extends Component<Props> {
@@ -72,12 +75,14 @@ export default class Mine extends Component<Props> {
 		return cells;
 	}
 	renderExceptionCell(section){
-		if (section == 0) {
-			console.log(section);
-			return
-		}
-		return;
-
+		if (section != 0) {return;}
+		return(
+			<ExceptionCell
+				touchAction={(index)=>{
+					console.log(index);
+				}}
+			/>
+		)
 	}
 }
 const styles = StyleSheet.create({

@@ -60,9 +60,7 @@ export default class MineCell extends Component<Props> {
 			<Text style = {cellStyle.subTitleStyle}>{this.props.subTitle}</Text>
 		)
 	}
-	gapView(){
-		return(<View style = {{marginLeft:5}}></View>)
-	}
+	
 }
 const cellStyle = StyleSheet.create({
 	container:{
