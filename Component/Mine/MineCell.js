@@ -47,12 +47,14 @@ export default class MineCell extends Component<Props> {
 	}
 	rightContent(){
 		if (this.props.subTitle.length == 0) {
-			return(
-				<Image
-					source = {{uri:"me_new"}}
-					style = {{width:24,height:13}}	
-				/>
-			)
+			if (this.props.isNew) {
+				return(
+					<Image
+						source = {{uri:"me_new"}}
+						style = {{width:24,height:13}}	
+					/>
+				)
+			}
 		}
 		return (
 			<Text style = {cellStyle.subTitleStyle}>{this.props.subTitle}</Text>
@@ -88,6 +90,8 @@ const cellStyle = StyleSheet.create({
 	iconStyle:{
 		width:30,
 		height:30,
+		// 设置圆角
+        borderRadius:15,
 	},
 	titleStyle:{
 		color:"black",

@@ -14,10 +14,10 @@ let datas = [
 					{title:"抵扣券",subTitle:"0",icon:"like"}
 				],
 				[
-					{title:"积分商城",subTitle:"",icon:"card"}
+					{title:"积分商城",icon:"card"}
 				],
 				[
-					{title:"今日推荐",subTitle:"",icon:"new_friend"}
+					{title:"今日推荐",icon:"new_friend",isNew:true}
 				],
 				[
 					{title:"我要合作",subTitle:"轻松开店，招财进宝",icon:"pay"}
@@ -57,6 +57,7 @@ export default class Mine extends Component<Props> {
 					title={data.title}
 					subTitle = {data.subTitle}
 					icon = {data.icon}
+					isNew = {data.isNew}
 					touchAction = {(value)=>{console.log("mineCell touchUpInSide");}}
 				/>
 			)

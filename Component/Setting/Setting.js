@@ -13,25 +13,25 @@ var CommonCell = require("./CommonCell.js");
 let Item = require("../Views/Nav/NavItem.js");
 var datas = [
 				[
-					{title:"扫一扫",isSwitch:false,subTitle:""}
+					{title:"扫一扫"}
 				],
 				[
-					{title:"省流量模式",isSwitch:true,subTitle:""},
-					{title:"提醒消息",isSwitch:false,subTitle:""},
-					{title:"邀请好友",isSwitch:false,subTitle:""},
-					{title:"清空缓存",isSwitch:false,subTitle:"1.94M"},
+					{title:"省流量模式",isSwitch:true},
+					{title:"提醒消息"},
+					{title:"邀请好友"},
+					{title:"清空缓存",subTitle:"1.94M"},
 				],
 				[
-					{title:"意见反馈",isSwitch:false,subTitle:""},
-					{title:"问卷调查",isSwitch:false,subTitle:""},
-					{title:"支付帮助",isSwitch:false,subTitle:""},
-					{title:"网络诊断",isSwitch:false,subTitle:""},
-					{title:"关于我们",isSwitch:false,subTitle:""},
-					{title:"我要应聘",isSwitch:false,subTitle:""},
+					{title:"意见反馈"},
+					{title:"问卷调查"},
+					{title:"支付帮助"},
+					{title:"网络诊断"},
+					{title:"关于我们"},
+					{title:"我要应聘"},
 				],
 				[
-					{title:"精品应用",isSwitch:false,subTitle:""},
-					{title:"更多信息",isSwitch:false,subTitle:""},
+					{title:"精品应用"},
+					{title:"更多信息"},
 				],
 			];
 
