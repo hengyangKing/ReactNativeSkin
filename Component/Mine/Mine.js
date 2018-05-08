@@ -10,6 +10,9 @@ import {
 let MineCell = require("./MineCell.js");
 let datas = [
 				[
+					{title:"我的订单",subTitle:"查看全部订单",icon:"collect"}
+				],
+				[
 					{title:"钱包",subTitle:"账户余额$888.88",icon:"draft"},
 					{title:"抵扣券",subTitle:"0",icon:"like"}
 				],
@@ -26,6 +29,9 @@ let datas = [
 type Props = {};
 
 export default class Mine extends Component<Props> {
+	static navigationOptions = (({ navigation }) => ({
+		headerTitle:"我的",
+	}));
 	render() {
 		return(
 			<View style = {styles.container}>
@@ -40,9 +46,10 @@ export default class Mine extends Component<Props> {
 		for (var i = 0; i < datas.length; i++) {
 			let sectionData = datas[i];
 			sections.push(
-				<View style = {{marginTop:10}} key = {i}>{
-					this.renderCells(sectionData)
-				}</View>
+				<View style = {{marginTop:10}} key = {i}>
+					{this.renderCells(sectionData)}
+					{this.renderExceptionCell(i)}
+				</View>
 			)
 		}
 		return sections;
@@ -63,6 +70,14 @@ export default class Mine extends Component<Props> {
 			)
 		}
 		return cells;
+	}
+	renderExceptionCell(section){
+		if (section == 0) {
+			console.log(section);
+			return
+		}
+		return;
+
 	}
 }
 const styles = StyleSheet.create({

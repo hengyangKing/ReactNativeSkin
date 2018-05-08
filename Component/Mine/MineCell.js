@@ -105,6 +105,7 @@ MineCell.defaultProps = {
 	title:"",//标题
 	icon:{},
 	subTitle:"",
+	isNew:false,
 	touchAction:(value)=>{},
 }
 module.exports = MineCell;
