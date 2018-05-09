@@ -18,7 +18,7 @@ let datas = [
 export  class MineCard extends Component<Props> {
 	render() {
 		return(
-			<TouchableOpacity onPress = {()=>{this.props.touchAction(this)}}>
+			<TouchableOpacity onPress = {()=>{this.props.touchAction(this.props.index)}}>
 				<View style = {cardStyle.card}>
 					<Image 
 						style = {cardStyle.cardIcon}
@@ -50,6 +50,7 @@ const cardStyle = StyleSheet.create({
 MineCard.defaultProps = {
 	title:"",//标题
 	icon:{},
+	index:0,
 	touchAction:(index)=>{},
 }
 export default class MineException extends Component<Props> {
@@ -69,9 +70,9 @@ export default class MineException extends Component<Props> {
 					key = {i}
 					icon = {data.icon}
 					title = {data.title}
-					touchAction = {(objt)=>{
-						console.log(objt);
-						// this.props.touchAction(objt.props.key)
+					index = {i}
+					touchAction = {(index)=>{
+						this.props.touchAction(index);
 					}}
 				/>
 			)

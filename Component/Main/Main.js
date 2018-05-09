@@ -105,7 +105,6 @@ const MainTabbar = TabNavigator({
 		},  
 	}  
 });
-
 const MainNavigator = StackNavigator({
 
 		Tabbar:{screen:MainTabbar},  

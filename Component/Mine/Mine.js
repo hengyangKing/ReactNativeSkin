@@ -9,6 +9,7 @@ import {
 
 let MineCell = require("./MineCell.js");
 let ExceptionCell = require("./MineException.js");
+let MineNav = require("./MineNav.js");
 
 let datas = [
 				[
@@ -34,6 +35,10 @@ type Props = {};
 export default class Mine extends Component<Props> {
 	static navigationOptions = (({ navigation }) => ({
 		headerTitle:"我的",
+		header: <MineNav 
+					touchIconAction = {()=>{console.log("touchIconAction")}}
+					touchItemAction = {(index)=>{console.log(index)}}
+				/>
 	}));
 	render() {
 		return(
