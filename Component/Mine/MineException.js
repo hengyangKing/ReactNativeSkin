@@ -34,16 +34,17 @@ const cardStyle = StyleSheet.create({
 	card:{
 		justifyContent:"center",
 		alignItems:"center",
-		flex:1,
+		height:70,
+		width:70,
 	},
 	cardIcon:{
-		height:48,
-		width:66,
-
+		width:40, 
+		height:30, 
+		marginBottom:3,
 	},
 	cardTitle:{
-		marginTop:3,
-		color:"black",
+		color:'gray',
+		fontSize:11,
 	},
 })
 MineCard.defaultProps = {
@@ -84,6 +85,10 @@ const styles = StyleSheet.create({
 		flex:1,
 		backgroundColor:"#ffffff",
 		height:60,
+		// 设置主轴的对齐方式
+        justifyContent:'space-around',
+        flexDirection:'row',
+
 	},
 });
 MineException.defaultProps = {
