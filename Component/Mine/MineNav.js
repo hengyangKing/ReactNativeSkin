@@ -49,7 +49,7 @@ export default class MineNav extends Component<Props> {
 				<View style={topStyle.topView}>
 					<Image source={{uri: 'see'}} style={topStyle.leftIconStyle}/>
 					<View style={topStyle.centerViewStyle}>
-						<Text style={{fontSize:20, color:'white', fontWeight:'bold',marginLeft:5}}>Foo电商</Text>
+						<Text style={{fontSize:20, color:'white', fontWeight:'bold',marginLeft:5}}>Foo</Text>
 						<Image source={{uri: 'avatar_vip'}} style={{width:17, height:17}}/>
 					</View>
 					{/*--右边的箭头--*/}
