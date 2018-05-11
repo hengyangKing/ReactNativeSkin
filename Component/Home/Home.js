@@ -5,12 +5,13 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity,
+    ScrollView,
+
 } from 'react-native';
 
 let Home_2 = require('./Home_2.js');
 let Nav = require('../Views/Nav/SearchBarNav.js');
-
+let TopView = require("./Views/HomeTopView.js");
 type Props = {};
 class Home extends Component<Props> {
 	static navigationOptions = (({ navigation }) => ({
@@ -20,42 +21,32 @@ class Home extends Component<Props> {
 					scanClick = {()=>{console.log("scanClick")}}
 				/>
 	}));
-
-
 	render() {
-		console.log(".///////////////////////////////")
-		let nav = this.props.navigation;
-		console.log(nav);
-
 		return (
+			this.renderContentView()
+    	)
+    }
+	renderContentView(){
+		return(
 			<View style = {styles.container}>
-				<Text style = {styles.welcome}>
-					Home
-				</Text>
-				<TouchableOpacity onPress ={()=>{this.pushToDetail('Home_2',{headerTitle:"Home_2"})}
-				}>
-					<Text style = {styles.welcome}>
-						跳转
-					</Text>
-				</TouchableOpacity>
+				<ScrollView>
+					<TopView
+						datas = {[]}
+						touchAction = {(index)=>{}}
+					/>
+					
+				</ScrollView>
 			</View>
-    );
-  }
-  pushToDetail(navigateTo, params, action){
+		)
+	}
+  	pushToDetail(navigateTo, params, action){
 		this.props.navigation.navigate(navigateTo,params,action)
-  }
+  	}
 }
 const styles = StyleSheet.create({
 	container:{
 		flex:1,
-		justifyContent:"center",
-		alignItems:"center",
 		backgroundColor:"#f5fcff",
-	},
-	welcome:{
-		fontSize:20,
-		textAlign:"center",
-		margin:10,
 	},
 }) 
 module.exports = Home;
